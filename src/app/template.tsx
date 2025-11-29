@@ -1,18 +1,21 @@
 "use client";
 
-import { imageOptimize } from "@/lib/utils";
+import { cn, imageOptimize } from "@/lib/utils";
 import { useGlobalStore } from "@/store";
 
 const Template = ({ children }: { children: React.ReactNode }) => {
-    const { backgroundImage } = useGlobalStore();
+    const { bgImage } = useGlobalStore();
 
     return (
         <>
             <div
-                className="fixed inset-0 bg-center bg-cover bg-no-repeat blur-2xl scale-[1.1]"
+                className={cn(
+                    "fixed inset-0 bg-center bg-cover bg-no-repeat blur-2xl scale-[1.1]",
+                    "transition-background duration-100 delay-75",
+                )}
                 style={{
                     // Image aspect ratio is 24:17 so we want 80% it so 24 * 80 x 17 * 80 = 1920x1360 (idk)
-                    backgroundImage: `url(${imageOptimize(`/backgrounds/${backgroundImage}.png`, 1920, 1360)})`,
+                    background: `url(${imageOptimize(`/backgrounds/${bgImage}.png`, 1920, 1360)})`,
                 }}
             />
             <div className="relative min-h-screen bg-background/55">{children}</div>

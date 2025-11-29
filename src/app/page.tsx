@@ -3,12 +3,23 @@
 import { format } from "date-fns";
 import Image from "next/image";
 import Link from "next/link";
-import { useEffect, useMemo, useState } from "react";
+import { startTransition, useEffect, useMemo, useState } from "react";
 import { FaRegCalendar } from "react-icons/fa6";
 
 import { siteConfig } from "@/config/sites";
+import { useGlobalStore } from "@/store";
 
 const Home = () => {
+    const { setBgImage } = useGlobalStore();
+
+    useEffect(() => {
+        startTransition(() => {
+            setBgImage("MainMenu");
+        });
+
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, []);
+
     const serverResetTime = useMemo(() => {
         const now = new Date();
         const dayOfWeek = now.getUTCDay();
