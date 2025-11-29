@@ -55,7 +55,7 @@ export const siteConfig = {
             title: "Record Simulator",
             description: "Simulate and analyze your Record setups for optimal performance.",
             logo: "/features/RecordSimulator.png",
-            href: "/record-simulator",
+            href: "/records",
         },
     ],
 };
