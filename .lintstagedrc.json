@@ -1,0 +1,5 @@
+{
+    "$schema": "https://json.schemastore.org/lintstagedrc.schema.json",
+    "*.{ts,tsx}": ["prettier --write", "eslint --fix"],
+    "*.json": ["prettier --write"]
+}
