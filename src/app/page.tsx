@@ -73,7 +73,7 @@ const Home = () => {
     }, [remainingTime]);
 
     return (
-        <div className="container h-full mx-auto max-w-7xl py-16 px-6">
+        <div className="container mx-auto max-w-7xl py-16 px-6">
             <div className="text-center">
                 <h1 className="text-4xl font-bold my-6">Logo</h1>
                 <p>

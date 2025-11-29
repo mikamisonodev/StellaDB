@@ -2,8 +2,17 @@
 
 import type { NextPage } from "next";
 
+import TrekkersSearch from "@/components/ui/trekkers-search";
+
 const Page: NextPage = () => {
-    return <></>;
+    return (
+        <div className="grid grid-cols-6 min-h-screen gap-4 pt-18 pb-4 px-6">
+            <div className="sticky lg:col-span-2 hidden lg:flex flex-col bg-background/20 rounded-lg py-4 px-3">
+                <TrekkersSearch />
+            </div>
+            <div className="col-span-4"></div>
+        </div>
+    );
 };
 
 export default Page;
