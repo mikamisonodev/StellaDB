@@ -70,9 +70,14 @@ const Home = () => {
                     <strong>Stella Sora</strong> developed by Yostar.
                 </p>
                 <p>
-                    This site is <strong>still in active development</strong>. If you have any suggestions or feedback,
-                    please feel free to reach out our{" "}
-                    <Link className="font-semibold" href="/github">
+                    This site is <span className="font-bold">still in active development</span>. If you have any
+                    suggestions or feedback, please feel free to reach out our{" "}
+                    <Link
+                        href={siteConfig.links.github}
+                        rel="noopener noreferrer"
+                        className="font-bold"
+                        target="_blank"
+                    >
                         GitHub
                     </Link>
                     .
@@ -106,9 +111,9 @@ const Home = () => {
                 </h3>
                 <p>
                     Server reset in{" "}
-                    <span className="font-semibold">
+                    <strong>
                         {remainingTime} ({formatedResetTime})
-                    </span>
+                    </strong>
                 </p>
             </div>
         </div>

@@ -20,6 +20,9 @@ export const siteConfig = {
         { label: "Raids", href: "/raids", icon: FaCrosshairs },
         { label: "Badges", href: "/badges", icon: FaRegIdCard },
     ],
+    links: {
+        github: "https://github.com/mikamisonodev/StellaDB",
+    },
     features: [
         {
             title: "Trekkers",
