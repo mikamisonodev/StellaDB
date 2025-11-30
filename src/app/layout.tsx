@@ -2,7 +2,6 @@ import "./globals.css";
 
 import type { Metadata, Viewport } from "next";
 
-import Navbar from "@/components/navbar";
 import { HeroProviders } from "@/components/providers/hero-providers";
 import { fontSans } from "@/config/fonts";
 import { siteConfig } from "@/config/sites";
@@ -30,10 +29,7 @@ const RootLayout = ({ children }: { children: React.ReactNode }) => {
     return (
         <html suppressHydrationWarning lang="en" dir="ltr">
             <body className={cn("text-foreground bg-background antialiased font-sans", fontSans.variable)}>
-                <HeroProviders themeProps={{ attribute: "class", defaultTheme: "light" }}>
-                    <Navbar />
-                    {children}
-                </HeroProviders>
+                <HeroProviders themeProps={{ attribute: "class", defaultTheme: "light" }}>{children}</HeroProviders>
             </body>
         </html>
     );

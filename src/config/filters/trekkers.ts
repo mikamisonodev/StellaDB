@@ -1,6 +1,7 @@
 "use client";
 
 import { IconType } from "react-icons";
+import { FaStar } from "react-icons/fa6";
 import { LuSword } from "react-icons/lu";
 import { TbBowFilled } from "react-icons/tb";
 
@@ -31,39 +32,51 @@ export const filterOptions: FilterOptions[] = [
     {
         label: "Element",
         items: [
-            { label: "Aqua", value: "element:aqua", img: "/elements/Aqua.png" },
-            { label: "Ignis", value: "element:ignis", img: "/elements/Ignis.png" },
-            { label: "Terra", value: "element:terra", img: "/elements/Terra.png" },
-            { label: "Ventus", value: "element:ventus", img: "/elements/Ventus.png" },
-            { label: "Umbra", value: "element:nox", img: "/elements/Umbra.png" },
-            { label: "Lux", value: "element:lux", img: "/elements/Lux.png" },
+            { label: "Aqua", value: "element:Aqua", img: "/elements/Aqua.png" },
+            { label: "Ignis", value: "element:Ignis", img: "/elements/Ignis.png" },
+            { label: "Terra", value: "element:Terra", img: "/elements/Terra.png" },
+            { label: "Ventus", value: "element:Ventus", img: "/elements/Ventus.png" },
+            { label: "Umbra", value: "element:Umbra", img: "/elements/Umbra.png" },
+            { label: "Lux", value: "element:Lux", img: "/elements/Lux.png" },
+        ],
+    },
+    {
+        label: "Rarity",
+        items: [
+            { label: "4", value: "rarity:4", icon: FaStar },
+            { label: "5", value: "rarity:5", icon: FaStar },
+        ],
+    },
+    {
+        label: "Class",
+        items: [
+            { label: "Vanguard", value: "class:Vanguard" },
+            { label: "Support", value: "class:Support" },
+            { label: "Versatile", value: "class:Versatile" },
         ],
     },
     {
         label: "Tag",
         items: [
-            { label: "Vanguard", value: "tag:vanguard" },
-            { label: "Collector", value: "tag:collector" },
-            { label: "New Star Guild", value: "tag:new_star_guild" },
-            { label: "Support", value: "tag:support" },
-            { label: "Steady", value: "tag:steady" },
-            { label: "Imperial Guard", value: "tag:imperial_guard" },
-            { label: "Versatile", value: "tag:versatile" },
-            { label: "Adventurous", value: "tag:adventurous" },
-            { label: "White Cat Troupe", value: "tag:white_cat_troupe" },
-            { label: "Creative", value: "tag:creative" },
-            { label: "Inquisitive", value: "tag:inquisitive" },
-            { label: "Baize Bureau", value: "tag:baize_bureau" },
-            { label: "United Harvest", value: "tag:united_harvest" },
-            { label: "Fenghuang Diner", value: "tag:fenghuang_diner" },
-            { label: "Freelance Trekker", value: "tag:freelance_trekker" },
-            { label: "Goodwind Homecare", value: "tag:goodwind_homecare" },
-            { label: "Grace Imperium", value: "tag:grace_imperium" },
-            { label: "Post Haste", value: "tag:post_haste" },
-            { label: "Ashwind Clan", value: "tag:ashwind_clan" },
-            { label: "Petal Bloom Guild", value: "tag:petal_bloom_guild" },
-            { label: "Scarlet Sights Media", value: "tag:scarlet_sights_media" },
-            { label: "Yunji Studio", value: "tag:yunji_studio" },
+            { label: "Collector", value: "tag:Collector" },
+            { label: "New Star Guild", value: "tag:New Star Guild" },
+            { label: "Steady", value: "tag:Steady" },
+            { label: "Imperial Guard", value: "tag:Imperial Guard" },
+            { label: "Adventurous", value: "tag:Adventurous" },
+            { label: "White Cat Troupe", value: "tag:White Cat Troupe" },
+            { label: "Creative", value: "tag:Creative" },
+            { label: "Inquisitive", value: "tag:Inquisitive" },
+            { label: "Baize Bureau", value: "tag:Baize Bureau" },
+            { label: "United Harvest", value: "tag:United Harvest" },
+            { label: "Fenghuang Diner", value: "tag:Fenghuang Diner" },
+            { label: "Freelance Trekker", value: "tag:Freelance Trekker" },
+            { label: "Goodwind Homecare", value: "tag:Goodwind Homecare" },
+            { label: "Grace Imperium", value: "tag:Grace Imperium" },
+            { label: "Post Haste", value: "tag:Post Haste" },
+            { label: "Ashwind Clan", value: "tag:Ashwind Clan" },
+            { label: "Petal Bloom Guild", value: "tag:Petal Bloom Guild" },
+            { label: "Scarlet Sights Media", value: "tag:Scarlet Sights Media" },
+            { label: "Yunji Studio", value: "tag:Yunji Studio" },
         ],
     },
 ];

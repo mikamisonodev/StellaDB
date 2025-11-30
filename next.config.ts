@@ -7,7 +7,8 @@ const nextConfig: NextConfig = {
             {
                 protocol: "https",
                 hostname: "raw.githubusercontent.com",
-                pathname: "/AutumnVN/ssassets/refs/heads/main/export/*",
+                port: "",
+                pathname: "/AutumnVN/ssassets/refs/heads/main/export/**",
             },
         ],
     },

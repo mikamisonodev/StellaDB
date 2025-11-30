@@ -1,5 +1,6 @@
 "use client";
 
+import Navbar from "@/components/navbar";
 import { cn, imageOptimize } from "@/lib/utils";
 import { useGlobalStore } from "@/store";
 
@@ -18,7 +19,11 @@ const Template = ({ children }: { children: React.ReactNode }) => {
                     background: `url(${imageOptimize(`/backgrounds/${bgImage}.png`, 1920, 1360)})`,
                 }}
             />
-            <div className="relative min-h-screen bg-background/55">{children}</div>
+            <div className="fixed top-0 h-screen w-screen bg-background/50" />
+            <div className="relative top-14">
+                <Navbar />
+                {children}
+            </div>
         </>
     );
 };
