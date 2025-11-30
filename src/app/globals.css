@@ -4,3 +4,15 @@
 
 @source "../../node_modules/@heroui/theme/dist/**/*.{js,ts,jsx,tsx}";
 @custom-variant dark (&:is(.dark *));
+
+@layer base {
+    * {
+        scrollbar-width: thin;
+        scrollbar-color: rgba(100, 100, 100, 0.5) transparent;
+    }
+
+    .dark * {
+        scrollbar-width: thin;
+        scrollbar-color: rgba(155, 155, 155, 0.5) transparent;
+    }
+}
