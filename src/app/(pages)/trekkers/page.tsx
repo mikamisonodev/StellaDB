@@ -10,9 +10,7 @@ const Page: NextPage = () => {
     const { setBgImage } = useGlobalStore();
 
     useEffect(() => {
-        startTransition(() => {
-            setBgImage("Trekkers");
-        });
+        startTransition(() => setBgImage("Trekkers"));
 
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);

@@ -13,9 +13,7 @@ const Home = () => {
     const { setBgImage } = useGlobalStore();
 
     useEffect(() => {
-        startTransition(() => {
-            setBgImage("MainMenu");
-        });
+        startTransition(() => setBgImage("MainMenu"));
 
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);

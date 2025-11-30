@@ -24,19 +24,19 @@ export const filterOptions: FilterOptions[] = [
     {
         label: "Attack Range",
         items: [
-            { label: "Melee", value: "melee", icon: LuSword },
-            { label: "Ranged", value: "ranged", icon: TbBowFilled },
+            { label: "Melee", value: "range:melee", icon: LuSword },
+            { label: "Ranged", value: "range:ranged", icon: TbBowFilled },
         ],
     },
     {
         label: "Element",
         items: [
-            { label: "Aqua", value: "aqua", img: "/elements/Aqua.png" },
-            { label: "Ignis", value: "ignis", img: "/elements/Ignis.png" },
-            { label: "Terra", value: "terra", img: "/elements/Terra.png" },
-            { label: "Ventus", value: "ventus", img: "/elements/Ventus.png" },
-            { label: "Umbra", value: "nox", img: "/elements/Umbra.png" },
-            { label: "Lux", value: "lux", img: "/elements/Lux.png" },
+            { label: "Aqua", value: "element:aqua", img: "/elements/Aqua.png" },
+            { label: "Ignis", value: "element:ignis", img: "/elements/Ignis.png" },
+            { label: "Terra", value: "element:terra", img: "/elements/Terra.png" },
+            { label: "Ventus", value: "element:ventus", img: "/elements/Ventus.png" },
+            { label: "Umbra", value: "element:nox", img: "/elements/Umbra.png" },
+            { label: "Lux", value: "element:lux", img: "/elements/Lux.png" },
         ],
     },
 ];

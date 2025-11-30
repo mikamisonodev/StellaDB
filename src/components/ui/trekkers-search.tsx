@@ -13,6 +13,27 @@ import { filterOptions, sortOptions } from "@/config/filters/trekkers";
 const TrekkersSearch = () => {
     const [sortOrder, setSortOrder] = useState<"asc" | "desc">("asc");
 
+    // Using a Set to track selected filters for efficient add/remove operations
+    const [selectedSet] = useState(new Set<string>());
+
+    // Using a separate state to trigger re-renders when filter count changes
+    const [filterCount, setFilterCount] = useState(0);
+
+    const handleSelect = (value: string) => {
+        if (selectedSet.has(value)) {
+            setFilterCount(prev => prev - 1);
+            selectedSet.delete(value);
+        } else {
+            setFilterCount(prev => prev + 1);
+            selectedSet.add(value);
+        }
+    };
+
+    const handleClear = () => {
+        setFilterCount(0);
+        selectedSet.clear();
+    };
+
     return (
         <>
             <div className="flex gap-3 pb-3">
@@ -45,14 +66,19 @@ const TrekkersSearch = () => {
                 </div>
             </div>
             <div className="flex-1 space-y-2 h-full">
-                <div className="overflow-auto max-h-[calc(100vh-3.5rem-196px)]">
+                <div className="overflow-auto space-y-3 max-h-[calc(100vh-3.5rem-196px)]">
                     {filterOptions.map((group, i) => (
-                        <div className="space-y-1.5" key={i}>
-                            <h3 className="text-lg">{group.label}</h3>
+                        <div key={i}>
+                            <h3 className="text-lg mb-1">{group.label}</h3>
                             <div className="flex flex-wrap gap-2">
                                 {group.items.map(item => (
                                     <Button
-                                        className="bg-default-100/50"
+                                        className={
+                                            selectedSet.has(item.value)
+                                                ? "bg-default-foreground text-background"
+                                                : "bg-default-100/50"
+                                        }
+                                        onPress={() => handleSelect(item.value)}
                                         key={item.value}
                                         startContent={
                                             item.img ? (
@@ -78,8 +104,13 @@ const TrekkersSearch = () => {
             </div>
             <div className="pt-3">
                 <p className="text-center text-sm mb-2">0 / 0 trekkers displayed</p>
-                <Button className="bg-default-100/70 w-full" startContent={<FaFilterCircleXmark />}>
-                    Clear 0 filter(s)
+                <Button
+                    startContent={<FaFilterCircleXmark />}
+                    className="bg-default-100/70 w-full"
+                    disabled={filterCount === 0}
+                    onPress={handleClear}
+                >
+                    Clear {filterCount} filter(s)
                 </Button>
             </div>
         </>
