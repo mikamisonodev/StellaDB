@@ -18,37 +18,18 @@ const Home = () => {
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
-    const serverResetTime = useMemo(() => {
-        const now = new Date();
-        const dayOfWeek = now.getUTCDay();
-
-        const resetTime = new Date(now);
-
-        // Calculate days until next Tuesday
-        let daysUntilReset = 2 - dayOfWeek;
-
-        // If today is Tuesday or later in the week, calculate days until next week's reset
-        if (daysUntilReset <= 0) {
-            daysUntilReset += 7;
-        }
-
-        // Server resets every Tuesday at 20:00 UTC-7 (which is 03:00 UTC on Wednesday)
-        resetTime.setUTCDate(now.getUTCDate() + daysUntilReset);
-        resetTime.setUTCHours(20, 0, 0, 0);
-
-        return resetTime;
-    }, []);
-
     const getRemainingTime = () => {
         const now = new Date();
+
+        // Next server reset time at 20:00 UTC
+        const serverResetTime = new Date(now);
+        serverResetTime.setUTCHours(20, 0, 0, 0);
+
+        if (now.getTime() > serverResetTime.getTime()) {
+            serverResetTime.setUTCDate(serverResetTime.getUTCDate() + 1);
+        }
+
         let remaining = (serverResetTime.getTime() - now.getTime()) / 1000;
-
-        const days = Math.floor(remaining / 86400)
-            .toString()
-            .padStart(2, "0");
-
-        remaining %= 86400;
-
         const hours = Math.floor(remaining / 3600)
             .toString()
             .padStart(2, "0");
@@ -63,23 +44,22 @@ const Home = () => {
             .toString()
             .padStart(2, "0");
 
-        return `${days} days ${hours}:${minutes}:${seconds}`;
+        return `${hours}:${minutes}:${seconds}`;
     };
 
-    const [remainingTime, setRemainingTime] = useState("00 days 00:00:00");
+    const [remainingTime, setRemainingTime] = useState("00:00:00");
     const formatedResetTime = useMemo(() => {
-        return format(serverResetTime, "p, O");
-    }, [serverResetTime]);
+        // Server resets at 20:00 UTC every day
+        return format(new Date().setUTCHours(20, 0, 0, 0), "p O");
+    }, []);
 
     useEffect(() => {
-        const interval = setInterval(() => {
-            setRemainingTime(getRemainingTime());
-        }, 1000);
+        const interval = setInterval(() => setRemainingTime(getRemainingTime()), 1000);
 
-        return () => clearInterval(interval);
-
-        // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [remainingTime]);
+        return () => {
+            clearInterval(interval);
+        };
+    }, []);
 
     return (
         <div className="container mx-auto max-w-7xl py-16 px-6">
