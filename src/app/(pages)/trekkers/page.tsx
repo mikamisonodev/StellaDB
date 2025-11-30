@@ -23,13 +23,13 @@ const Page: NextPage = () => {
     }, []);
 
     return (
-        <div className="grid grid-cols-6 min-h-screen gap-4 py-3 px-6">
-            <div className="sticky lg:col-span-2 hidden lg:block">
-                <div className="flex h-[calc(100vh-3.5rem-24px)] rounded-lg bg-background/20 flex-col py-4 px-3">
+        <div className="flex min-h-screen gap-4 py-3 px-6">
+            <div className="w-xl lg:col-span-2 hidden lg:block">
+                <div className="flex sticky top-[calc(3.5rem+12px)] h-[calc(100vh-3.5rem-24px)] rounded-lg bg-background/20 flex-col py-4 px-3">
                     <TrekkersSearch />
                 </div>
             </div>
-            <div className="col-span-4 max-h-screen overflow-auto">
+            <div className="max-h-screen overflow-auto">
                 <div className="grid grid-cols-8 gap-3">
                     {Object.values(trekkers).map(char => (
                         <Link key={char.id} href={`/trekkers/${char.id}`}>
@@ -37,6 +37,7 @@ const Page: NextPage = () => {
                                 src={ASSET_URL + `/Assets/assetbundles/icon/head/head_${char.id}01_XL.png`}
                                 className="size-auto"
                                 alt={char.name}
+                                loading="eager"
                                 height={137}
                                 width={100}
                             />

@@ -66,7 +66,7 @@ const TrekkersSearch = () => {
                 </div>
             </div>
             <div className="flex-1 space-y-2 h-full">
-                <div className="overflow-auto space-y-3 max-h-[calc(100vh-3.5rem-196px)]">
+                <div className="thin-scrollbar overflow-auto space-y-3 max-h-[calc(100vh-3.5rem-196px)]">
                     {filterOptions.map((group, i) => (
                         <div key={i}>
                             <h3 className="text-lg mb-1">{group.label}</h3>
