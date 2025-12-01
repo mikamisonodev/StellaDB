@@ -31,7 +31,7 @@ const TrekkerCard = ({ char }: TrekkerCardProps) => {
                             className="object-cover object-top"
                             alt={char.name}
                             loading="eager"
-                            sizes="100vw"
+                            sizes="100%"
                             fill
                         />
                     </div>
