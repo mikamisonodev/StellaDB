@@ -25,7 +25,7 @@ export const useDataStore = create<DataStore>((set, store) => ({
     trekkers: {},
     totalTrekkers: 0,
     fetchTrekkers: async () => {
-        if (Object.keys(store().trekkers).length !== 0) return;
+        if (store().totalTrekkers !== 0) return;
 
         const response = await axios.get<Record<string, Trekker>>("/api/characters");
         set({
