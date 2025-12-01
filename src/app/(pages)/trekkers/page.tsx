@@ -1,13 +1,10 @@
 "use client";
 
 import type { NextPage } from "next";
-import Image from "next/image";
-import Link from "next/link";
 import { startTransition, useEffect } from "react";
 
+import TrekkerCard from "@/components/ui/trekker-card";
 import TrekkersSearch from "@/components/ui/trekkers-search";
-import { ASSET_URL } from "@/config/constant";
-import { cn } from "@/lib/utils";
 import { useDataStore, useGlobalStore } from "@/store";
 
 const Page: NextPage = () => {
@@ -30,36 +27,10 @@ const Page: NextPage = () => {
                     <TrekkersSearch displayCount={totalTrekkers} count={totalTrekkers} />
                 </div>
             </div>
-            <div className="min-h-screen overflow-auto w-full">
-                <div className="grid xl:grid-cols-6 lg:grid-cols-5 md:grid-cols-4 sm:grid-cols-3 grid-cols-2 gap-3">
+            <div className="min-h-screen w-full">
+                <div className="grid grid-cols-[repeat(auto-fill,minmax(160px,1fr))] gap-3">
                     {Object.values(trekkers).map(char => (
-                        <Link
-                            key={char.id}
-                            href={`/trekkers/${char.id}`}
-                            className={cn(
-                                "relative rounded-lg overflow-hidden bg-default-100 bg-linear-to-br pt-2",
-                                char.star === 5 ? "from-[#d8e] to-[#7ff]" : "from-[#fd5] to-[#efc]",
-                            )}
-                        >
-                            <Image
-                                className="absolute top-0 left-0 z-10"
-                                src={`/elements/${char.element}.png`}
-                                alt={char.element}
-                                height={32}
-                                width={32}
-                            />
-                            <Image
-                                src={ASSET_URL + `/Assets/assetbundles/icon/head/head_${char.id}01_XL.png`}
-                                className="w-full scale-[1.075]"
-                                alt={char.name}
-                                loading="eager"
-                                height={137}
-                                width={100}
-                            />
-                            <p className="absolute bottom-0 w-full from-background to-transparent bg-linear-to-t text-center pt-3 mb-1">
-                                {char.name}
-                            </p>
-                        </Link>
+                        <TrekkerCard key={char.id} char={char} />
                     ))}
                 </div>
             </div>
