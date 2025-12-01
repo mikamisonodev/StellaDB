@@ -23,7 +23,7 @@ const Navbar = () => {
     const pathname = usePathname();
 
     return (
-        <HeroUINavbar maxWidth="2xl" height="3.5rem" className="fixed top-0 bg-default-100/40">
+        <HeroUINavbar maxWidth="full" height="3.5rem" className="fixed top-0 bg-default-100/40">
             <NavbarContent className="basis-1/5 sm:basis-full" justify="start">
                 <NavbarBrand as="li" className="gap-6 max-w-fit">
                     <NavbarMenuToggle className="md:hidden h-6" />
