@@ -5,6 +5,8 @@ import { FaStar } from "react-icons/fa6";
 import { LuSword } from "react-icons/lu";
 import { TbBowFilled } from "react-icons/tb";
 
+import { Trekker } from "@/typings/trekker";
+
 export const sortOptions = [
     { label: "Default", value: "default" },
     { label: "Name", value: "name" },
@@ -25,8 +27,8 @@ export const filterOptions: FilterOptions[] = [
     {
         label: "Attack Range",
         items: [
-            { label: "Melee", value: "range:melee", icon: LuSword },
-            { label: "Ranged", value: "range:ranged", icon: TbBowFilled },
+            { label: "Melee", value: "range:Melee", icon: LuSword },
+            { label: "Ranged", value: "range:Ranged", icon: TbBowFilled },
         ],
     },
     {
@@ -80,3 +82,16 @@ export const filterOptions: FilterOptions[] = [
         ],
     },
 ];
+
+export const filterFn = {
+    tag: (value: string, trekker: Trekker) => trekker.tag.includes(value),
+    rarity: (value: string, trekker: Trekker) => trekker.star === Number(value),
+    range: (value: string, trekker: Trekker) => trekker.attackType === value,
+    element: (value: string, trekker: Trekker) => trekker.element === value,
+    class: (value: string, trekker: Trekker) => trekker.class === value,
+};
+
+export const sortFn = {
+    name: (a: Trekker, b: Trekker) => a.name.localeCompare(b.name),
+    id: (a: Trekker, b: Trekker) => a.id - b.id,
+};

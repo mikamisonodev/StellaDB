@@ -5,6 +5,8 @@ import { create } from "zustand";
 
 import { Trekker } from "@/typings/trekker";
 
+import { checkEmptyObject } from "./lib/utils";
+
 type GlobalStore = {
     bgImage: string;
     setBgImage: (image: string) => void;
@@ -25,9 +27,10 @@ export const useDataStore = create<DataStore>((set, store) => ({
     trekkers: {},
     totalTrekkers: 0,
     fetchTrekkers: async () => {
-        if (store().totalTrekkers !== 0) return;
+        if (!checkEmptyObject(store().trekkers)) return;
 
         const response = await axios.get<Record<string, Trekker>>("/api/characters");
+
         set({
             totalTrekkers: Object.keys(response.data).length,
             trekkers: response.data,

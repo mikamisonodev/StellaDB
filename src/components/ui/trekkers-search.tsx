@@ -4,26 +4,34 @@ import { Button } from "@heroui/button";
 import { Input } from "@heroui/input";
 import { Select, SelectItem } from "@heroui/select";
 import Image from "next/image";
-import { useState } from "react";
 import { FaSortAmountDown, FaSortAmountUp } from "react-icons/fa";
 import { FaFilterCircleXmark, FaMagnifyingGlass } from "react-icons/fa6";
 
 import { filterOptions, sortOptions } from "@/config/filters/trekkers";
 
 type TrekkersSearchProps = {
+    onSortOrderChange: (order: "asc" | "desc") => void;
+    onSortTypeChange: (type: string) => void;
+    setFilterCount: React.Dispatch<React.SetStateAction<number>>;
+    sortOrder: "asc" | "desc";
+    selectedSet: Set<string>;
     displayCount: number;
+    filterCount: number;
+    sortType: string;
     count: number;
 };
 
-const TrekkersSearch = ({ count, displayCount }: TrekkersSearchProps) => {
-    const [sortOrder, setSortOrder] = useState<"asc" | "desc">("asc");
-
-    // Using a Set to track selected filters for efficient add/remove operations
-    const [selectedSet] = useState(new Set<string>());
-
-    // Using a separate state to trigger re-renders when filter count changes
-    const [filterCount, setFilterCount] = useState(0);
-
+const TrekkersSearch = ({
+    count,
+    sortType,
+    sortOrder,
+    selectedSet,
+    filterCount,
+    displayCount,
+    setFilterCount,
+    onSortTypeChange,
+    onSortOrderChange,
+}: TrekkersSearchProps) => {
     const handleSelect = (value: string) => {
         if (selectedSet.has(value)) {
             setFilterCount(prev => prev - 1);
@@ -51,15 +59,17 @@ const TrekkersSearch = ({ count, displayCount }: TrekkersSearchProps) => {
                 />
                 <div className="flex flex-1">
                     <Button
-                        onPress={() => setSortOrder(sortOrder === "asc" ? "desc" : "asc")}
+                        onPress={() => onSortOrderChange(sortOrder === "asc" ? "desc" : "asc")}
                         className="bg-default-100/70 rounded-r-none"
+                        disabled={sortType === "default"}
                         isIconOnly
                     >
                         {sortOrder === "asc" ? <FaSortAmountUp /> : <FaSortAmountDown />}
                     </Button>
                     <Select
                         aria-label="Sorting"
-                        defaultSelectedKeys={["default"]}
+                        selectedKeys={[sortType]}
+                        onChange={e => onSortTypeChange(e.target.value)}
                         classNames={{
                             trigger: "rounded-l-none bg-default-100/70 data-[hover=true]:bg-default-100/50",
                         }}
