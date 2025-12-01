@@ -19,7 +19,7 @@ const Template = ({ children }: { children: React.ReactNode }) => {
                     background: `url(${imageOptimize(`/backgrounds/${bgImage}.png`, 1920, 1360)})`,
                 }}
             />
-            <div className="fixed top-0 h-screen w-screen bg-background/50" />
+            <div className="fixed top-0 h-screen w-screen bg-default-100/50" />
             <div className="relative top-14">
                 <Navbar />
                 {children}

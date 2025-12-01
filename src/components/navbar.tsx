@@ -23,7 +23,7 @@ const Navbar = () => {
     const pathname = usePathname();
 
     return (
-        <HeroUINavbar maxWidth="2xl" height="3.5rem" className="fixed top-0 bg-background/35">
+        <HeroUINavbar maxWidth="2xl" height="3.5rem" className="fixed top-0 bg-default-100/40">
             <NavbarContent className="basis-1/5 sm:basis-full" justify="start">
                 <NavbarBrand as="li" className="gap-6 max-w-fit">
                     <NavbarMenuToggle className="md:hidden h-6" />
@@ -54,7 +54,7 @@ const Navbar = () => {
                 <ThemeToggle />
             </NavbarContent>
 
-            <NavbarMenu className="bg-background/50 px-3">
+            <NavbarMenu className="bg-default-100/50 px-3">
                 <div className="mt-2 flex flex-col gap-2">
                     {siteConfig.navMenuItems.map((item, i) => (
                         <NavbarMenuItem key={i}>

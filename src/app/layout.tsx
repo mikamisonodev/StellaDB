@@ -28,7 +28,7 @@ export const viewport: Viewport = {
 const RootLayout = ({ children }: { children: React.ReactNode }) => {
     return (
         <html suppressHydrationWarning lang="en" dir="ltr">
-            <body className={cn("text-foreground bg-background antialiased font-sans", fontSans.variable)}>
+            <body className={cn("text-foreground antialiased font-sans", fontSans.variable)}>
                 <HeroProviders themeProps={{ attribute: "class", defaultTheme: "light" }}>{children}</HeroProviders>
             </body>
         </html>

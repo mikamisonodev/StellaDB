@@ -10,7 +10,12 @@ import { FaFilterCircleXmark, FaMagnifyingGlass } from "react-icons/fa6";
 
 import { filterOptions, sortOptions } from "@/config/filters/trekkers";
 
-const TrekkersSearch = () => {
+type TrekkersSearchProps = {
+    displayCount: number;
+    count: number;
+};
+
+const TrekkersSearch = ({ count, displayCount }: TrekkersSearchProps) => {
     const [sortOrder, setSortOrder] = useState<"asc" | "desc">("asc");
 
     // Using a Set to track selected filters for efficient add/remove operations
@@ -66,7 +71,7 @@ const TrekkersSearch = () => {
                 </div>
             </div>
             <div className="flex-1 space-y-2 h-full">
-                <div className="thin-scrollbar overflow-auto space-y-3 max-h-[calc(100vh-3.5rem-196px)]">
+                <div className="thin-scrollbar overflow-auto space-y-3 max-h-[calc(100vh-3.5rem-188px)]">
                     {filterOptions.map((group, i) => (
                         <div key={i}>
                             <h3 className="text-lg mb-1">{group.label}</h3>
@@ -103,7 +108,9 @@ const TrekkersSearch = () => {
                 </div>
             </div>
             <div className="pt-3">
-                <p className="text-center text-sm mb-2">0 / 0 trekkers displayed</p>
+                <p className="text-center text-sm mb-2">
+                    {displayCount} / {count} trekkers displayed
+                </p>
                 <Button
                     startContent={<FaFilterCircleXmark />}
                     className="bg-default-100/70 w-full"

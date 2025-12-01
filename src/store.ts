@@ -3,7 +3,6 @@
 import axios from "axios";
 import { create } from "zustand";
 
-import { checkEmptyObject } from "@/lib/utils";
 import { Trekker } from "@/typings/trekker";
 
 type GlobalStore = {
@@ -17,16 +16,21 @@ export const useGlobalStore = create<GlobalStore>(set => ({
 }));
 
 type DataStore = {
+    totalTrekkers: number;
     trekkers: Record<string, Trekker>;
     fetchTrekkers: () => Promise<void>;
 };
 
 export const useDataStore = create<DataStore>((set, store) => ({
     trekkers: {},
+    totalTrekkers: 0,
     fetchTrekkers: async () => {
-        if (!checkEmptyObject(store().trekkers)) return;
+        if (Object.keys(store().trekkers).length !== 0) return;
 
         const response = await axios.get<Record<string, Trekker>>("/api/characters");
-        set({ trekkers: response.data });
+        set({
+            totalTrekkers: Object.keys(response.data).length,
+            trekkers: response.data,
+        });
     },
 }));
