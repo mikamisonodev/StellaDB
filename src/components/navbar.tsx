@@ -63,7 +63,7 @@ const Navbar = () => {
                                     "py-1.5 px-3 rounded-lg text-foreground/80 hover:text-foreground transition-colors w-full",
                                     {
                                         "bg-foreground/10 text-foreground":
-                                            pathname.length > 1
+                                            item.href.length > 1
                                                 ? pathname.startsWith(item.href)
                                                 : pathname === item.href,
                                     },

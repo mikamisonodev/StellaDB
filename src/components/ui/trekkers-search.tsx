@@ -2,7 +2,7 @@
 
 import { Button } from "@heroui/button";
 import { Input } from "@heroui/input";
-import { Select, SelectItem } from "@heroui/select";
+import { Select, SelectItem, SelectSection } from "@heroui/select";
 import Image from "next/image";
 import { FaSortAmountDown, FaSortAmountUp } from "react-icons/fa";
 import { FaFilterCircleXmark, FaMagnifyingGlass } from "react-icons/fa6";
@@ -70,13 +70,27 @@ const TrekkersSearch = ({
                         aria-label="Sorting"
                         selectedKeys={[sortType]}
                         onChange={e => onSortTypeChange(e.target.value)}
-                        classNames={{
-                            trigger: "rounded-l-none bg-default-100/70 data-[hover=true]:bg-default-100/50",
-                        }}
+                        classNames={{ trigger: "rounded-l-none bg-default-100/70 data-[hover=true]:bg-default-100/50" }}
+                        popoverProps={{ placement: "bottom-end" }}
                     >
-                        {sortOptions.map(option => (
-                            <SelectItem key={option.value}>{option.label}</SelectItem>
-                        ))}
+                        {sortOptions.map(option =>
+                            option.section ? (
+                                <SelectSection showDivider key={option.title} title={option.title}>
+                                    {option.items.map(subOption => (
+                                        <SelectItem
+                                            startContent={subOption.icon ? <subOption.icon /> : null}
+                                            key={subOption.value}
+                                        >
+                                            {subOption.label}
+                                        </SelectItem>
+                                    ))}
+                                </SelectSection>
+                            ) : (
+                                <SelectItem startContent={option.icon ? <option.icon /> : null} key={option.value}>
+                                    {option.label}
+                                </SelectItem>
+                            ),
+                        )}
                     </Select>
                 </div>
             </div>

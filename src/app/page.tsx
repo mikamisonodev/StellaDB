@@ -14,8 +14,6 @@ const Home = () => {
 
     useEffect(() => {
         startTransition(() => setBgImage("MainMenu"));
-
-        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
     const getRemainingTime = () => {

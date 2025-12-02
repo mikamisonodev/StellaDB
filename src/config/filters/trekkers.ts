@@ -1,7 +1,7 @@
 "use client";
 
 import { IconType } from "react-icons";
-import { FaStar } from "react-icons/fa6";
+import { FaHeart, FaStar } from "react-icons/fa6";
 import { LuSword } from "react-icons/lu";
 import { TbBowFilled } from "react-icons/tb";
 
@@ -11,6 +11,15 @@ export const sortOptions = [
     { label: "Default", value: "default" },
     { label: "Name", value: "name" },
     { label: "ID", value: "id" },
+    { label: "Rarity", value: "rarity", icon: FaStar },
+    {
+        title: "Stats",
+        section: true,
+        items: [
+            { label: "HP", value: "hp", icon: FaHeart },
+            { label: "ATK", value: "atk", icon: LuSword },
+        ],
+    },
 ];
 
 type FilterOptions = {
@@ -93,5 +102,12 @@ export const filterFn = {
 
 export const sortFn = {
     name: (a: Trekker, b: Trekker) => a.name.localeCompare(b.name),
+    rarity: (a: Trekker, b: Trekker) => a.star - b.star,
     id: (a: Trekker, b: Trekker) => a.id - b.id,
+    hp: (a: Trekker, b: Trekker) => {
+        return a.stat[a.stat.length - 1].hp - b.stat[b.stat.length - 1].hp;
+    },
+    atk: (a: Trekker, b: Trekker) => {
+        return a.stat[a.stat.length - 1].atk - b.stat[b.stat.length - 1].atk;
+    },
 };

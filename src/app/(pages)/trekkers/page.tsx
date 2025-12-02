@@ -17,8 +17,6 @@ const Page: NextPage = () => {
             setBgImage("Trekkers");
             fetchTrekkers();
         });
-
-        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
     const [sortOrder, setSortOrder] = useState<"asc" | "desc">("asc");
@@ -41,22 +39,18 @@ const Page: NextPage = () => {
                 return filterFn[type as keyof typeof filterFn](value, trekker);
             });
         });
-
-        // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [filterCount, totalTrekkers]);
+    }, [filterCount, trekkers, selectedSet]);
 
     // Sorted trekkers based on sort type and order after filtering to improve performance
     const sortedTrekkers = useMemo(() => {
         // Default sorting, return as is
         if (sortType === "default") return trekkersList;
 
-        return [...trekkersList].sort((a, b) => {
+        return trekkersList.toSorted((a, b) => {
             // Reverse the order if descending by multiplying by -1
             return sortFn[sortType as keyof typeof sortFn](a, b) * (sortOrder === "asc" ? 1 : -1);
         });
-
-        // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [sortType, sortOrder, filterCount, totalTrekkers]);
+    }, [sortType, sortOrder, filterCount, trekkersList]);
 
     return (
         <div className="flex min-h-screen gap-4 py-3 px-6">
