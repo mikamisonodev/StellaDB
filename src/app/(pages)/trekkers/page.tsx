@@ -6,11 +6,12 @@ import { startTransition, useEffect, useMemo, useState } from "react";
 import TrekkerCard from "@/components/ui/trekker-card";
 import TrekkersSearch from "@/components/ui/trekkers-search";
 import { filterFn, sortFn } from "@/config/filters/trekkers";
+import { throttle } from "@/lib/throttle";
 import { useDataStore, useGlobalStore } from "@/store";
 
 const Page: NextPage = () => {
     const { setBgImage } = useGlobalStore();
-    const { trekkers, totalTrekkers, fetchTrekkers } = useDataStore();
+    const { trekkers, totalTrekkers, trekkerSearch, fetchTrekkers } = useDataStore();
 
     useEffect(() => {
         startTransition(() => {
@@ -23,23 +24,28 @@ const Page: NextPage = () => {
     const [sortType, setSortType] = useState("default");
     const [selectedSet] = useState(new Set<string>());
     const [filterCount, setFilterCount] = useState(0);
+    const [searchInput, setSearchInput] = useState("");
+
+    const searchResults = useMemo(() => {
+        if (searchInput.length === 0) return Object.values(trekkers);
+
+        return trekkerSearch.search(searchInput, { prefix: true }).map(result => trekkers[result.id]);
+    }, [searchInput, trekkerSearch, trekkers]);
 
     // Filtered trekkers based on selected filters
     // TODO: Make OR logic when multiple filters of same type are selected
     const trekkersList = useMemo(() => {
-        const listTrekkers = Object.values(trekkers);
-
         // No filters selected, return all trekkers
-        if (selectedSet.size === 0) return listTrekkers;
+        if (selectedSet.size === 0) return searchResults;
 
         const selected = Array.from(selectedSet.values());
-        return listTrekkers.filter(trekker => {
+        return searchResults.filter(trekker => {
             return selected.every(filter => {
                 const [type, value] = filter.split(":");
                 return filterFn[type as keyof typeof filterFn](value, trekker);
             });
         });
-    }, [filterCount, trekkers, selectedSet]);
+    }, [filterCount, trekkers, selectedSet, searchResults]);
 
     // Sorted trekkers based on sort type and order after filtering to improve performance
     const sortedTrekkers = useMemo(() => {
@@ -61,6 +67,7 @@ const Page: NextPage = () => {
                         sortOrder={sortOrder}
                         selectedSet={selectedSet}
                         filterCount={filterCount}
+                        onSearchInput={throttle(setSearchInput, 1000)}
                         displayCount={trekkersList.length}
                         onSortOrderChange={setSortOrder}
                         onSortTypeChange={setSortType}

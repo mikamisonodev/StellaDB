@@ -1,6 +1,7 @@
 "use client";
 
 import axios from "axios";
+import MiniSearch from "minisearch";
 import { create } from "zustand";
 
 import { Trekker } from "@/typings/trekker";
@@ -20,19 +21,30 @@ export const useGlobalStore = create<GlobalStore>(set => ({
 type DataStore = {
     totalTrekkers: number;
     trekkers: Record<string, Trekker>;
+    trekkerSearch: MiniSearch<Trekker>;
     fetchTrekkers: () => Promise<void>;
 };
 
 export const useDataStore = create<DataStore>((set, store) => ({
     trekkers: {},
     totalTrekkers: 0,
+    trekkerSearch: new MiniSearch<Trekker>({
+        storeFields: ["id", "name"],
+        fields: ["name"],
+        idField: "id",
+    }),
     fetchTrekkers: async () => {
+        const data = store();
+
         if (!checkEmptyObject(store().trekkers)) return;
 
         const response = await axios.get<Record<string, Trekker>>("/api/characters");
+        const list = Object.values(response.data);
+
+        data.trekkerSearch.addAll(list);
 
         set({
-            totalTrekkers: Object.keys(response.data).length,
+            totalTrekkers: list.length,
             trekkers: response.data,
         });
     },

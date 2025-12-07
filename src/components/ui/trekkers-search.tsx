@@ -13,6 +13,7 @@ type TrekkersSearchProps = {
     onSortOrderChange: (order: "asc" | "desc") => void;
     onSortTypeChange: (type: string) => void;
     setFilterCount: React.Dispatch<React.SetStateAction<number>>;
+    onSearchInput: (value: string) => void;
     sortOrder: "asc" | "desc";
     selectedSet: Set<string>;
     displayCount: number;
@@ -29,6 +30,7 @@ const TrekkersSearch = ({
     filterCount,
     displayCount,
     setFilterCount,
+    onSearchInput,
     onSortTypeChange,
     onSortOrderChange,
 }: TrekkersSearchProps) => {
@@ -52,6 +54,7 @@ const TrekkersSearch = ({
             <div className="flex gap-3 pb-3">
                 <Input
                     classNames={{ inputWrapper: "bg-default-100/70" }}
+                    onInput={e => onSearchInput(e.currentTarget.value)}
                     startContent={<FaMagnifyingGlass />}
                     placeholder="Search"
                     className="flex-1"
