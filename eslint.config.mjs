@@ -16,6 +16,7 @@ const eslintConfig = defineConfig([
         rules: {
             "no-unused-vars": "off",
             "react-hooks/exhaustive-deps": "off",
+            "react-hooks/preserve-manual-memoization": "off",
             "@typescript-eslint/no-unused-vars": [
                 "warn",
                 {

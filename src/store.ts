@@ -4,7 +4,7 @@ import axios from "axios";
 import MiniSearch from "minisearch";
 import { create } from "zustand";
 
-import { Trekker } from "@/typings/trekker";
+import type { Trekker } from "@/typings/trekker";
 
 import { checkEmptyObject } from "./lib/utils";
 
@@ -36,7 +36,7 @@ export const useDataStore = create<DataStore>((set, store) => ({
     fetchTrekkers: async () => {
         const data = store();
 
-        if (!checkEmptyObject(store().trekkers)) return;
+        if (!checkEmptyObject(data.trekkers)) return;
 
         const response = await axios.get<Record<string, Trekker>>("/api/characters");
         const list = Object.values(response.data);

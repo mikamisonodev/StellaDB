@@ -1,13 +1,35 @@
 "use client";
 
-import { IconType } from "react-icons";
+import type { IconType } from "react-icons";
 import { FaHeart, FaStar } from "react-icons/fa6";
 import { LuSword } from "react-icons/lu";
 import { TbBowFilled } from "react-icons/tb";
 
-import { Trekker } from "@/typings/trekker";
+import type { Trekker } from "@/typings/trekker";
 
-export const sortOptions = [
+export type FilterOption = {
+    label: string;
+    items: {
+        label: string;
+        value: string;
+        icon?: IconType;
+        img?: string;
+    }[];
+};
+
+type SortOption = {
+    label?: string;
+    value?: string;
+    title?: string;
+    section?: boolean;
+    icon?: IconType;
+};
+
+export interface SortType extends SortOption {
+    items?: SortOption[];
+}
+
+export const sortOptions: SortType[] = [
     { label: "Default", value: "default" },
     { label: "Name", value: "name" },
     { label: "ID", value: "id" },
@@ -22,7 +44,7 @@ export const sortOptions = [
     },
 ];
 
-type FilterOptions = {
+export type FilterOptions = {
     label: string;
     items: {
         label: string;

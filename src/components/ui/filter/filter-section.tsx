@@ -7,33 +7,38 @@ import Image from "next/image";
 import { FaSortAmountDown, FaSortAmountUp } from "react-icons/fa";
 import { FaFilterCircleXmark, FaMagnifyingGlass } from "react-icons/fa6";
 
-import { filterOptions, sortOptions } from "@/config/filters/trekkers";
+import type { FilterOption, SortType } from "@/config/filters/trekkers";
 
-type TrekkersSearchProps = {
+type FilterSectionProps = {
     onSortOrderChange: (order: "asc" | "desc") => void;
     onSortTypeChange: (type: string) => void;
     setFilterCount: React.Dispatch<React.SetStateAction<number>>;
     onSearchInput: (value: string) => void;
+    sortOptions: SortType[];
+    filterOptions: FilterOption[];
+    searchInput: string;
     sortOrder: "asc" | "desc";
     selectedSet: Set<string>;
-    displayCount: number;
     filterCount: number;
     sortType: string;
+    displayCount: number;
     count: number;
 };
 
-const TrekkersSearch = ({
-    count,
-    sortType,
-    sortOrder,
+const FilterSection = ({
     selectedSet,
-    filterCount,
-    displayCount,
     setFilterCount,
     onSearchInput,
-    onSortTypeChange,
     onSortOrderChange,
-}: TrekkersSearchProps) => {
+    onSortTypeChange,
+    sortOrder,
+    sortType,
+    filterCount,
+    filterOptions,
+    sortOptions,
+    displayCount,
+    count,
+}: FilterSectionProps) => {
     const handleSelect = (value: string) => {
         if (selectedSet.has(value)) {
             setFilterCount(prev => prev - 1);
@@ -79,7 +84,7 @@ const TrekkersSearch = ({
                         {sortOptions.map(option =>
                             option.section ? (
                                 <SelectSection showDivider key={option.title} title={option.title}>
-                                    {option.items.map(subOption => (
+                                    {option.items!.map(subOption => (
                                         <SelectItem
                                             startContent={subOption.icon ? <subOption.icon /> : null}
                                             key={subOption.value}
@@ -136,7 +141,7 @@ const TrekkersSearch = ({
             </div>
             <div className="pt-3">
                 <p className="text-center text-sm mb-2">
-                    {displayCount} / {count} trekkers displayed
+                    {displayCount} / {count} items displayed
                 </p>
                 <Button
                     startContent={<FaFilterCircleXmark />}
@@ -151,4 +156,4 @@ const TrekkersSearch = ({
     );
 };
 
-export default TrekkersSearch;
+export default FilterSection;
