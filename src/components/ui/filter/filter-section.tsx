@@ -7,7 +7,7 @@ import Image from "next/image";
 import { FaSortAmountDown, FaSortAmountUp } from "react-icons/fa";
 import { FaFilterCircleXmark, FaMagnifyingGlass } from "react-icons/fa6";
 
-import type { FilterOption, SortType } from "@/config/filters/trekkers";
+import type { FilterOption, SortType } from "@/typings/filter";
 
 type FilterSectionProps = {
     onSortOrderChange: (order: "asc" | "desc") => void;

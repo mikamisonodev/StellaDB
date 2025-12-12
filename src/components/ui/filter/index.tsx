@@ -3,7 +3,7 @@
 import type MiniSearch from "minisearch";
 import { useMemo, useState } from "react";
 
-import { FilterOption, SortType } from "@/config/filters/trekkers";
+import type { FilterOption, SortType } from "@/typings/filter";
 
 import FilterSection from "./filter-section";
 
@@ -28,7 +28,7 @@ function Filter<T>({ items, search, sortFn, filterFn, filterOptions, sortOptions
     const searchResults = useMemo(() => {
         if (searchInput.length === 0) return Object.values(items);
 
-        const results = search.search(searchInput, { prefix: true });
+        const results = search.search(searchInput);
         return results.map(result => items[result.id]);
     }, [searchInput, count]);
 

@@ -1,33 +1,11 @@
 "use client";
 
-import type { IconType } from "react-icons";
 import { FaHeart, FaStar } from "react-icons/fa6";
 import { LuSword } from "react-icons/lu";
 import { TbBowFilled } from "react-icons/tb";
 
+import type { FilterOptions, SortType } from "@/typings/filter";
 import type { Trekker } from "@/typings/trekker";
-
-export type FilterOption = {
-    label: string;
-    items: {
-        label: string;
-        value: string;
-        icon?: IconType;
-        img?: string;
-    }[];
-};
-
-type SortOption = {
-    label?: string;
-    value?: string;
-    title?: string;
-    section?: boolean;
-    icon?: IconType;
-};
-
-export interface SortType extends SortOption {
-    items?: SortOption[];
-}
 
 export const sortOptions: SortType[] = [
     { label: "Default", value: "default" },
@@ -43,16 +21,6 @@ export const sortOptions: SortType[] = [
         ],
     },
 ];
-
-export type FilterOptions = {
-    label: string;
-    items: {
-        label: string;
-        value: string;
-        icon?: IconType;
-        img?: string;
-    }[];
-};
 
 export const filterOptions: FilterOptions[] = [
     {
@@ -114,22 +82,22 @@ export const filterOptions: FilterOptions[] = [
     },
 ];
 
-export const filterFn = {
-    tag: (value: string, trekker: Trekker) => trekker.tag.includes(value),
-    rarity: (value: string, trekker: Trekker) => trekker.star === Number(value),
-    range: (value: string, trekker: Trekker) => trekker.attackType === value,
-    element: (value: string, trekker: Trekker) => trekker.element === value,
-    class: (value: string, trekker: Trekker) => trekker.class === value,
+export const filterFn: Record<string, (value: string, trekker: Trekker) => boolean> = {
+    tag: (value, trekker) => trekker.tag.includes(value),
+    rarity: (value, trekker) => trekker.star === Number(value),
+    range: (value, trekker) => trekker.attackType === value,
+    element: (value, trekker) => trekker.element === value,
+    class: (value, trekker) => trekker.class === value,
 };
 
-export const sortFn = {
-    name: (a: Trekker, b: Trekker) => a.name.localeCompare(b.name),
-    rarity: (a: Trekker, b: Trekker) => a.star - b.star,
-    id: (a: Trekker, b: Trekker) => a.id - b.id,
-    hp: (a: Trekker, b: Trekker) => {
+export const sortFn: Record<string, (a: Trekker, b: Trekker) => number> = {
+    name: (a, b) => a.name.localeCompare(b.name),
+    rarity: (a, b) => a.star - b.star,
+    id: (a, b) => a.id - b.id,
+    hp: (a, b) => {
         return a.stat[a.stat.length - 1].hp - b.stat[b.stat.length - 1].hp;
     },
-    atk: (a: Trekker, b: Trekker) => {
+    atk: (a, b) => {
         return a.stat[a.stat.length - 1].atk - b.stat[b.stat.length - 1].atk;
     },
 };

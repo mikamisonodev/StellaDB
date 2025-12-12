@@ -27,10 +27,7 @@ const Page: NextPage = () => {
                 count={totalTrekkers}
                 search={trekkerSearch}
                 render={item => <TrekkerCard key={item.id} char={item} />}
-                filterFn={filters.filterFn}
-                sortFn={filters.sortFn}
-                filterOptions={filters.filterOptions}
-                sortOptions={filters.sortOptions}
+                {...filters}
             />
         </div>
     );

@@ -4,6 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 
 import { ASSET_URL } from "@/config/constant";
+import { handleClassStyle, handleRarityColor } from "@/config/styles";
 import { cn } from "@/lib/utils";
 import { Trekker } from "@/typings/trekker";
 
@@ -15,14 +16,8 @@ const TrekkerCard = ({ char }: TrekkerCardProps) => {
     return (
         <div className="relative">
             <div
-                className={cn(
-                    char.star === 4 ? "from-[#fd5] to-[#efc]" : "from-[#d8e] to-[#7ff]",
-                    "rounded-lg pt-1 pb-2 bg-linear-to-r",
-                )}
-                style={{
-                    mask: "linear-gradient(transparent 0 0) content-box, linear-gradient(#000 0 0)",
-                    maskComposite: "exclude",
-                }}
+                className={cn("rounded-lg pt-1 pb-2 bg-linear-to-r mask-exclude", handleRarityColor(char.star))}
+                style={{ mask: "linear-gradient(transparent 0 0) content-box, linear-gradient(#000 0 0)" }}
             >
                 <Link className="block relative aspect-[1/1.3] overflow-hidden" href={`/trekkers/${char.id}`}>
                     <div className="absolute -inset-3">
@@ -44,13 +39,11 @@ const TrekkerCard = ({ char }: TrekkerCardProps) => {
                             className="absolute inset-0"
                         />
                         <div
-                            className="absolute inset-0"
+                            className="absolute inset-0 bg-size-[4px_4px] bg-position-[0_0,2px_2px]"
                             style={{
+                                maskImage: "linear-gradient(to top, #000, #0000 60%)",
                                 backgroundImage:
                                     "radial-gradient(circle at center, black 10%, transparent 75%), radial-gradient(circle at center, black 10%, transparent 75%)",
-                                maskImage: "linear-gradient(to top, #000, #0000 60%)",
-                                backgroundPosition: "0 0, 2px 2px",
-                                backgroundSize: "4px 4px",
                             }}
                         />
                     </div>
@@ -58,12 +51,8 @@ const TrekkerCard = ({ char }: TrekkerCardProps) => {
                         <p className="text-lg font-semibold text-[#247] text-right">{char.name}</p>
                     </div>
                     <div
+                        className={cn("flex absolute top-0 right-0 items-center", handleClassStyle(char.class))}
                         style={{ clipPath: "polygon(0% 0%, 100% 0%, 100% 100%, 7% 100%)" }}
-                        className={cn("flex absolute top-0 right-0 items-center", {
-                            "bg-[#78e]": char.class === "Versatile",
-                            "bg-[#d69]": char.class === "Vanguard",
-                            "bg-[#4ca]": char.class === "Support",
-                        })}
                     >
                         <div className="pr-1 pl-3 pb-0.5 text-sm text-white">{char.class}</div>
                         <div

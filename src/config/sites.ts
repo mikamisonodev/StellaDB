@@ -7,8 +7,8 @@ export const siteConfig = {
     description: "A database for the game Stella Sora.",
     navItems: [
         { label: "Trekkers", href: "/trekkers", icon: FaUserGroup },
-        { label: "Items", href: "/items", icon: FaBox },
         { label: "Discs", href: "/discs", icon: FaCompactDisc },
+        { label: "Items", href: "/items", icon: FaBox },
         { label: "Raids", href: "/raids", icon: FaCrosshairs },
         { label: "Badges", href: "/badges", icon: FaRegIdCard },
     ],
@@ -31,17 +31,18 @@ export const siteConfig = {
             href: "/trekkers",
         },
         {
-            title: "Items",
-            description: "Explore a detailed catalog of items found in Stella Sora.",
-            logo: "/features/Items.png",
-            href: "/items",
-        },
-        {
             title: "Discs",
             description: "Browse through the various Discs available in the game.",
             logo: "/features/Discs.png",
             href: "/discs",
         },
+        {
+            title: "Items",
+            description: "Explore a detailed catalog of items found in Stella Sora.",
+            logo: "/features/Items.png",
+            href: "/items",
+        },
+
         {
             title: "Raids",
             description: "Get information on Raids, including strategies and weaknesses.",
