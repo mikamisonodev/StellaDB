@@ -26,7 +26,7 @@ const Navbar = () => {
         <HeroUINavbar maxWidth="full" height="3.5rem" className="fixed top-0 bg-default-100/40">
             <NavbarContent className="basis-1/5 sm:basis-full" justify="start">
                 <NavbarBrand as="li" className="gap-6 max-w-fit">
-                    <NavbarMenuToggle className="md:hidden h-6" />
+                    <NavbarMenuToggle className="lg:hidden h-6" />
                     <NextLink href="/">Logo</NextLink>
                 </NavbarBrand>
                 <ul className="hidden lg:flex gap-8 justify-start ml-8">

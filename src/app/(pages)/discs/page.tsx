@@ -21,7 +21,7 @@ const Page: NextPage = () => {
     }, []);
 
     return (
-        <div className="flex min-h-screen gap-4 py-3 px-6">
+        <div className="flex flex-col lg:flex-row gap-4 py-3 px-6">
             <Filter<Disc>
                 items={discs}
                 count={totalDiscs}

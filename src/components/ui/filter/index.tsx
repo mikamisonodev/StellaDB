@@ -54,7 +54,7 @@ function Filter<T>({ items, search, sortFn, filterFn, filterOptions, sortOptions
 
     return (
         <>
-            <div className="w-xl lg:col-span-2 hidden lg:block">
+            <div className="lg:w-xl w-full">
                 <div className="flex sticky top-[calc(3.5rem+12px)] h-[calc(100vh-3.5rem-24px)] rounded-lg bg-default-100/40 flex-col py-4 px-3">
                     <FilterSection
                         filterOptions={filterOptions}
