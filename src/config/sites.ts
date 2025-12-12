@@ -15,8 +15,8 @@ export const siteConfig = {
     navMenuItems: [
         { label: "Home", href: "/", icon: FaHouse },
         { label: "Trekkers", href: "/trekkers", icon: FaUserGroup },
-        { label: "Items", href: "/items", icon: FaBox },
         { label: "Discs", href: "/discs", icon: FaCompactDisc },
+        { label: "Items", href: "/items", icon: FaBox },
         { label: "Raids", href: "/raids", icon: FaCrosshairs },
         { label: "Badges", href: "/badges", icon: FaRegIdCard },
     ],
