@@ -60,6 +60,7 @@ const FilterSection = ({
                 <Input
                     classNames={{ inputWrapper: "bg-default-100/70" }}
                     onInput={e => onSearchInput(e.currentTarget.value)}
+                    onClear={() => onSearchInput("")}
                     startContent={<FaMagnifyingGlass />}
                     placeholder="Search"
                     className="flex-1"
