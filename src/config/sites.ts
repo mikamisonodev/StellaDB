@@ -42,7 +42,6 @@ export const siteConfig = {
             logo: "/features/Items.png",
             href: "/items",
         },
-
         {
             title: "Raids",
             description: "Get information on Raids, including strategies and weaknesses.",
