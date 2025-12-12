@@ -9,7 +9,7 @@ import { FaFilterCircleXmark, FaMagnifyingGlass } from "react-icons/fa6";
 
 import type { FilterOption, SortType } from "@/typings/filter";
 
-type FilterSectionProps = {
+export type FilterSectionProps = {
     onSortOrderChange: (order: "asc" | "desc") => void;
     onSortTypeChange: (type: string) => void;
     setFilterCount: React.Dispatch<React.SetStateAction<number>>;
@@ -25,7 +25,7 @@ type FilterSectionProps = {
     count: number;
 };
 
-const FilterSection = ({
+export const FilterSection = ({
     selectedSet,
     setFilterCount,
     onSearchInput,
@@ -34,6 +34,7 @@ const FilterSection = ({
     sortOrder,
     sortType,
     filterCount,
+    searchInput,
     filterOptions,
     sortOptions,
     displayCount,
@@ -63,6 +64,7 @@ const FilterSection = ({
                     onClear={() => onSearchInput("")}
                     startContent={<FaMagnifyingGlass />}
                     placeholder="Search"
+                    value={searchInput}
                     className="flex-1"
                     isClearable
                 />
@@ -156,5 +158,3 @@ const FilterSection = ({
         </>
     );
 };
-
-export default FilterSection;

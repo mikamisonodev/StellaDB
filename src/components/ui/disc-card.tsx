@@ -34,7 +34,7 @@ const DiscCard = ({ disc }: DiscCardProps) => {
                         />
                     </div>
                     <div className="absolute bottom-0 inset-x-0 bg-linear-to-t from-black/90 to-transparent px-1.5">
-                        <p className="font-semibold pt-3 pb-1">{disc.name}</p>
+                        <p className="font-semibold text-white pt-3 pb-1">{disc.name}</p>
                     </div>
                 </Link>
             </div>
