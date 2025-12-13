@@ -12,11 +12,15 @@ import { checkEmptyObject } from "./lib/utils";
 type GlobalStore = {
     bgImage: string;
     setBgImage: (image: string) => void;
+    matches: boolean;
+    setMatches: (matches: boolean) => void;
 };
 
 export const useGlobalStore = create<GlobalStore>(set => ({
     bgImage: "MainMenu",
     setBgImage: (image: string) => set({ bgImage: image }),
+    matches: false,
+    setMatches: (matches: boolean) => set({ matches }),
 }));
 
 type DataStore = {

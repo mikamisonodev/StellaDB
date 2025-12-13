@@ -1,9 +1,11 @@
 "use client";
 
-import { startTransition, useEffect, useState } from "react";
+import { startTransition, useEffect } from "react";
+
+import { useGlobalStore } from "@/store";
 
 export const useMediaQuery = (query: string) => {
-    const [matches, setMatches] = useState(false);
+    const { matches, setMatches } = useGlobalStore();
 
     useEffect(() => {
         const media = window.matchMedia(query);
