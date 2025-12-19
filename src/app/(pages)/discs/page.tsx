@@ -15,7 +15,7 @@ const Page: NextPage = () => {
 
     useEffect(() => {
         startTransition(() => {
-            setBgImage("Discs");
+            setBgImage("/backgrounds/Discs.png");
             fetchDiscs();
         });
     }, []);

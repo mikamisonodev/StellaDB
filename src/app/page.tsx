@@ -13,7 +13,7 @@ const Home = () => {
     const { setBgImage } = useGlobalStore();
 
     useEffect(() => {
-        startTransition(() => setBgImage("MainMenu"));
+        startTransition(() => setBgImage("/backgrounds/MainMenu.png"));
     }, []);
 
     const getRemainingTime = () => {

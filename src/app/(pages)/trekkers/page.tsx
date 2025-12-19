@@ -15,7 +15,7 @@ const Page: NextPage = () => {
 
     useEffect(() => {
         startTransition(() => {
-            setBgImage("Trekkers");
+            setBgImage("/backgrounds/Trekkers.png");
             fetchTrekkers();
         });
     }, []);

@@ -17,7 +17,7 @@ type GlobalStore = {
 };
 
 export const useGlobalStore = create<GlobalStore>(set => ({
-    bgImage: "MainMenu",
+    bgImage: "/backgrounds/MainMenu.png",
     setBgImage: (image: string) => set({ bgImage: image }),
     matches: false,
     setMatches: (matches: boolean) => set({ matches }),

@@ -16,7 +16,7 @@ const Template = ({ children }: { children: React.ReactNode }) => {
                 )}
                 style={{
                     // Image aspect ratio is 24:17 so we want 80% it so 24 * 80 x 17 * 80 = 1920x1360 (idk)
-                    background: `url(${imageOptimize(`/backgrounds/${bgImage}.png`, 1920, 1360)})`,
+                    background: `url(${imageOptimize(bgImage, 1920, 1360)})`,
                 }}
             />
             <div className="fixed top-0 h-screen w-screen bg-default-100/50" />
