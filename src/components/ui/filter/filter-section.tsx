@@ -81,7 +81,7 @@ export const FilterSection = ({
                         aria-label="Sorting"
                         selectedKeys={[sortType]}
                         onChange={e => onSortTypeChange(e.target.value)}
-                        classNames={{ trigger: "rounded-l-none bg-default-100/70 data-[hover=true]:bg-default-100/50" }}
+                        classNames={{ trigger: "rounded-l-none bg-default-100/70 data-[hover=true]:bg-default-200/70" }}
                         popoverProps={{ placement: "bottom-end" }}
                     >
                         {sortOptions.map(option =>
@@ -109,14 +109,14 @@ export const FilterSection = ({
                 <div className="thin-scrollbar overflow-auto space-y-3 max-h-[calc(100vh-3.5rem-188px)]">
                     {filterOptions.map((group, i) => (
                         <div key={i}>
-                            <h3 className="text-lg mb-1">{group.label}</h3>
+                            <h3 className="text-lg mb-1 text-foreground/80">{group.label}</h3>
                             <div className="flex flex-wrap gap-2">
                                 {group.items.map(item => (
                                     <Button
                                         className={
                                             selectedSet.has(item.value)
-                                                ? "bg-default-foreground text-background"
-                                                : "bg-default-100/50"
+                                                ? "bg-foreground text-background"
+                                                : "bg-default-100/60 text-foreground/80 hover:bg-default-200/80"
                                         }
                                         onPress={() => handleSelect(item.value)}
                                         key={item.value}
@@ -143,12 +143,12 @@ export const FilterSection = ({
                 </div>
             </div>
             <div className="pt-3">
-                <p className="text-center text-sm mb-2">
+                <p className="text-center text-sm mb-2 text-foreground/60">
                     {displayCount} / {count} items displayed
                 </p>
                 <Button
                     startContent={<FaFilterCircleXmark />}
-                    className="bg-default-100/70 w-full"
+                    className="bg-default-100/70 w-full text-foreground/80"
                     disabled={filterCount === 0}
                     onPress={handleClear}
                 >

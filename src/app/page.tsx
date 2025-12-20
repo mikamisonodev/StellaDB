@@ -61,7 +61,7 @@ const Home = () => {
 
     return (
         <div className="container mx-auto max-w-7xl py-3 px-6">
-            <div className="text-center">
+            <div className="text-center text-foreground">
                 <h1 className="text-4xl font-bold my-6">Logo</h1>
                 <p>
                     <strong>{siteConfig.name}</strong> is an unofficial database for the game{" "}
@@ -73,7 +73,7 @@ const Home = () => {
                     <Link
                         href={siteConfig.links.github}
                         rel="noopener noreferrer"
-                        className="font-bold"
+                        className="font-bold text-primary hover:text-primary-600 transition-colors"
                         target="_blank"
                     >
                         GitHub
@@ -84,7 +84,7 @@ const Home = () => {
             <div className="grid grid-cols-1 lg:grid-cols-3 md:grid-cols-2 gap-3 my-6">
                 {siteConfig.features.map((item, i) => (
                     <Link
-                        className="flex items-center bg-default-100/20 hover:bg-default-100/50 transition-background rounded-lg py-2.5 px-3"
+                        className="flex items-center bg-content1/60 hover:bg-content2/80 backdrop-blur-sm rounded-lg py-2.5 px-3"
                         href={item.href}
                         key={i}
                     >
@@ -96,20 +96,20 @@ const Home = () => {
                             width={64}
                         />
                         <div>
-                            <h2 className="font-semibold text-lg">{item.title}</h2>
-                            <p className="text-sm">{item.description}</p>
+                            <h2 className="font-semibold text-lg text-foreground">{item.title}</h2>
+                            <p className="text-sm text-foreground/60">{item.description}</p>
                         </div>
                     </Link>
                 ))}
             </div>
-            <div className="text-center space-y-2">
+            <div className="text-center space-y-2 text-foreground">
                 <h3 className="text-2xl font-bold">
                     <FaRegCalendar className="inline mb-1 mr-2" />
                     Current Events
                 </h3>
-                <p>
+                <p className="text-foreground/60">
                     Server reset in{" "}
-                    <strong>
+                    <strong className="text-foreground">
                         {remainingTime} ({formatedResetTime})
                     </strong>
                 </p>

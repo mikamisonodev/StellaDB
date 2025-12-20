@@ -14,7 +14,12 @@ const ThemeToggle = () => {
     };
 
     return (
-        <Button variant="flat" className="text-foreground bg-default-100/40" onPress={handleChange} isIconOnly>
+        <Button
+            variant="flat"
+            className="text-foreground bg-content1/60 hover:bg-content2/80"
+            onPress={handleChange}
+            isIconOnly
+        >
             {!isSSR && theme === "dark" ? <FaRegMoon /> : <FaRegSun />}
         </Button>
     );

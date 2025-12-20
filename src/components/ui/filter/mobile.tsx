@@ -15,15 +15,15 @@ const MobileFilter = (props: FilterSectionProps) => {
 
     return (
         <>
-            <div className="sticky top-[calc(3.5rem+12px)] p-2 rounded-lg z-10 flex bg-background/20 backdrop-blur-2xl gap-3">
-                <Button onPress={() => setOpen(true)} className="bg-default-300/50 flex-1" startContent={<FaFilter />}>
+            <div className="sticky top-[calc(3.5rem+12px)] p-2 rounded-lg z-10 flex bg-content1/70 backdrop-blur-md gap-3">
+                <Button onPress={() => setOpen(true)} className="bg-default-200/70 flex-1" startContent={<FaFilter />}>
                     <span className="text-xs bg-default-300 size-5 font-semibold rounded-lg leading-5">
                         {props.filterCount}
                     </span>
                 </Button>
                 <Input
                     onInput={e => props.onSearchInput(e.currentTarget.value)}
-                    classNames={{ inputWrapper: "bg-default-300/50" }}
+                    classNames={{ inputWrapper: "bg-default-200/70" }}
                     onClear={() => props.onSearchInput("")}
                     startContent={<FaMagnifyingGlass />}
                     value={props.searchInput}
@@ -34,14 +34,14 @@ const MobileFilter = (props: FilterSectionProps) => {
                 <div className="md:flex hidden flex-3">
                     <Button
                         onPress={() => props.onSortOrderChange(props.sortOrder === "asc" ? "desc" : "asc")}
-                        className="bg-default-300/50 rounded-r-none"
+                        className="bg-default-200/70 rounded-r-none"
                         disabled={props.sortType === "default"}
                         isIconOnly
                     >
                         {props.sortOrder === "asc" ? <FaSortAmountUp /> : <FaSortAmountDown />}
                     </Button>
                     <Select
-                        classNames={{ trigger: "rounded-l-none bg-default-300/50 data-[hover=true]:bg-default-100" }}
+                        classNames={{ trigger: "rounded-l-none bg-default-200/70 data-[hover=true]:bg-default-300/70" }}
                         onChange={e => props.onSortTypeChange(e.target.value)}
                         popoverProps={{ placement: "bottom-end" }}
                         selectedKeys={[props.sortType]}
@@ -75,7 +75,7 @@ const MobileFilter = (props: FilterSectionProps) => {
                 hideCloseButton
                 isOpen={open}
             >
-                <DrawerContent className="bg-default-50">
+                <DrawerContent className="bg-content1">
                     {onClose => (
                         <>
                             <DrawerHeader className="flex justify-between items-center">
