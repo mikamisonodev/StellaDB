@@ -51,12 +51,22 @@ export const useDataStore = create<DataStore>((set, store) => ({
         const response = await axios.get<Record<string, Trekker>>("/api/characters");
         const list = Object.values(response.data);
 
+        // Next recruitment trekkers with names starting with "ID_"
+        const filtered = list.filter(trekker => {
+            if (trekker.name.startsWith("ID_")) {
+                delete response.data[`${trekker.id}`];
+                return false;
+            }
+
+            return true;
+        });
+
         if (data.trekkerSearch.documentCount === 0) {
-            data.trekkerSearch.addAll(list);
+            data.trekkerSearch.addAll(filtered);
         }
 
         set({
-            totalTrekkers: list.length,
+            totalTrekkers: filtered.length,
             trekkers: response.data,
         });
     },

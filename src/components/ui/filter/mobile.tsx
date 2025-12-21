@@ -15,7 +15,7 @@ const MobileFilter = (props: FilterSectionProps) => {
 
     return (
         <>
-            <div className="sticky top-[calc(3.5rem+12px)] p-2 rounded-lg z-10 flex bg-content1/70 backdrop-blur-md gap-3">
+            <div className="sticky top-[calc(3.5rem+12px)] p-2 rounded-lg z-10 flex bg-content1/40 backdrop-blur-xl gap-3">
                 <Button onPress={() => setOpen(true)} className="bg-default-200/70 flex-1" startContent={<FaFilter />}>
                     <span className="text-xs bg-default-300 size-5 font-semibold rounded-lg leading-5">
                         {props.filterCount}

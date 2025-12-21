@@ -54,7 +54,7 @@ const Navbar = () => {
                 <ThemeToggle />
             </NavbarContent>
 
-            <NavbarMenu className="bg-content1/80 backdrop-blur-lg px-3">
+            <NavbarMenu className="bg-content1/50 backdrop-blur-xl px-3">
                 <div className="mt-2 flex flex-col gap-2">
                     {siteConfig.navMenuItems.map((item, i) => (
                         <NavbarMenuItem key={i}>

@@ -16,7 +16,7 @@ const ThemeToggle = () => {
     return (
         <Button
             variant="flat"
-            className="text-foreground bg-content1/60 hover:bg-content2/80"
+            className="text-foreground bg-content1/40 hover:bg-content2/60"
             onPress={handleChange}
             isIconOnly
         >

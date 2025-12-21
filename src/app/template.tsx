@@ -17,7 +17,7 @@ const Template = ({ children }: { children: React.ReactNode }) => {
                 }}
             />
             {/* Overlay with dark/light mode support */}
-            <div className="fixed top-0 h-screen w-screen bg-background/50" />
+            <div className="fixed top-0 h-screen w-screen bg-background/40 backdrop-blur-md" />
             <div className="relative top-14">
                 <Navbar />
                 {children}

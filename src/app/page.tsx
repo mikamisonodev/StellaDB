@@ -84,7 +84,7 @@ const Home = () => {
             <div className="grid grid-cols-1 lg:grid-cols-3 md:grid-cols-2 gap-3 my-6">
                 {siteConfig.features.map((item, i) => (
                     <Link
-                        className="flex items-center bg-content1/60 hover:bg-content2/80 backdrop-blur-sm rounded-lg py-2.5 px-3"
+                        className="flex items-center bg-content1/40 hover:bg-content2/60 backdrop-blur-xl transition-all duration-200 rounded-lg py-2.5 px-3"
                         href={item.href}
                         key={i}
                     >
