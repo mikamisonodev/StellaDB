@@ -73,7 +73,7 @@ const Home = () => {
                     <Link
                         href={siteConfig.links.github}
                         rel="noopener noreferrer"
-                        className="font-bold text-primary hover:text-primary-600 transition-colors"
+                        className="font-bold text-foreground transition-colors"
                         target="_blank"
                     >
                         GitHub

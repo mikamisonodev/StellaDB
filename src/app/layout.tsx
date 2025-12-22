@@ -3,7 +3,7 @@ import "./globals.css";
 import type { Metadata, Viewport } from "next";
 
 import { HeroProviders } from "@/components/providers/hero-providers";
-import { fontSans } from "@/config/fonts";
+import { fontExo, fontSans } from "@/config/fonts";
 import { siteConfig } from "@/config/sites";
 import { cn } from "@/lib/utils";
 
@@ -28,7 +28,13 @@ export const viewport: Viewport = {
 const RootLayout = ({ children }: { children: React.ReactNode }) => {
     return (
         <html suppressHydrationWarning lang="en" dir="ltr">
-            <body className={cn("text-foreground bg-background antialiased font-sans min-h-screen", fontSans.variable)}>
+            <body
+                className={cn(
+                    "text-foreground bg-background antialiased min-h-screen",
+                    fontSans.variable,
+                    fontExo.variable,
+                )}
+            >
                 <HeroProviders themeProps={{ attribute: "class", defaultTheme: "light" }}>{children}</HeroProviders>
             </body>
         </html>
