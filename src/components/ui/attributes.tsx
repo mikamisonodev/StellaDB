@@ -10,12 +10,14 @@ const icons: Record<string, IconType> = {
 
 type AttributesProps = {
     attr: Record<string, number>;
+    buff?: Record<string, number>;
 };
 
-const Attributes = ({ attr }: AttributesProps) => {
+const Attributes = ({ attr, buff }: AttributesProps) => {
     return (
         <div className="grid grid-cols-2 py-2 px-3 gap-4 bg-content1/40 backdrop-blur-xl rounded-md">
             {Object.entries(attr).map(([key, value]) => {
+                const buffValue = buff ? (key in buff ? buff[key] : 0) : 0;
                 const Icon = icons[key as keyof typeof icons];
 
                 return (
@@ -24,7 +26,7 @@ const Attributes = ({ attr }: AttributesProps) => {
                             <Icon size={18} className="h-4.5" />
                             <span className="mb-0.5">{key}</span>
                         </div>
-                        <p className="mb-0.5 font-semibold">{value.toLocaleString()}</p>
+                        <p className="mb-0.5 font-semibold">{(value + buffValue).toLocaleString()} </p>
                     </div>
                 );
             })}

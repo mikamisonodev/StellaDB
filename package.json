@@ -16,6 +16,7 @@
   "dependencies": {
     "@heroui/button": "^2.2.28",
     "@heroui/drawer": "^2.2.25",
+    "@heroui/dropdown": "^2.3.29",
     "@heroui/input": "^2.4.29",
     "@heroui/link": "^2.2.24",
     "@heroui/navbar": "^2.2.26",
