@@ -42,7 +42,7 @@ const Navbar = () => {
                                     }),
                                 )}
                             >
-                                <item.icon className="mr-2 mb-0.5" />
+                                <item.icon className="mr-2" />
                                 {item.label}
                             </NextLink>
                         </NavbarItem>

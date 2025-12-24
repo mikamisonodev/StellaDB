@@ -1,7 +1,7 @@
 "use client";
 
-import { FaHeart, FaStar } from "react-icons/fa6";
-import { LuSword } from "react-icons/lu";
+import { FaStar } from "react-icons/fa6";
+import { PiHeartFill, PiSwordFill } from "react-icons/pi";
 import { TbBowFilled } from "react-icons/tb";
 
 import type { FilterOptions, SortType } from "@/typings/filter";
@@ -16,8 +16,8 @@ export const sortOptions: SortType[] = [
         title: "Stats",
         section: true,
         items: [
-            { label: "HP", value: "hp", icon: FaHeart },
-            { label: "ATK", value: "atk", icon: LuSword },
+            { label: "HP", value: "hp", icon: PiHeartFill },
+            { label: "ATK", value: "atk", icon: PiSwordFill },
         ],
     },
 ];
@@ -26,7 +26,7 @@ export const filterOptions: FilterOptions[] = [
     {
         label: "Attack Range",
         items: [
-            { label: "Melee", value: "range:Melee", icon: LuSword },
+            { label: "Melee", value: "range:Melee", icon: PiSwordFill },
             { label: "Ranged", value: "range:Ranged", icon: TbBowFilled },
         ],
     },

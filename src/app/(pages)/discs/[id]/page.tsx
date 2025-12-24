@@ -1,9 +1,11 @@
 "use client";
 
 import type { NextPage } from "next";
+import Image from "next/image";
 import { startTransition, use, useEffect, useState } from "react";
 import { FaStar } from "react-icons/fa6";
 
+import AttributesTab from "@/components/ui/discs/attributes-tab";
 import DiscImage from "@/components/ui/discs/image";
 import { Tab, TabPanel, Tabs } from "@/components/ui/tabs";
 import { useDataStore } from "@/store";
@@ -31,30 +33,42 @@ const Page: NextPage<Props> = ({ params }) => {
     }, [totalDiscs]);
 
     return (
-        <div className="flex lg:gap-3 h-[calc(100vh-3.5rem-24px)] py-3 px-6">
+        <div className="flex flex-col items-center lg:flex-row lg:gap-3 h-[calc(100vh-3.5rem)] py-3 px-6">
             {currentDisc ? (
                 <>
-                    <div className="flex items-center justify-center h-full w-1/2 relative">
+                    <div className="flex items-center justify-center h-fit lg:w-1/2 w-full relative">
                         <DiscImage id={currentDisc.id.toString()} name={currentDisc.name} />
                     </div>
-                    <div className="space-y-6 py-2">
-                        <div className="space-y-2">
-                            <h1 className="text-5xl font-exo italic tracking-wide text-foreground">
+                    <div className="self-start space-y-3 py-4 w-full flex-1">
+                        <div className="space-y-5">
+                            <h1 className="lg:text-5xl text-3xl font-exo italic tracking-wide text-foreground">
                                 {currentDisc.name}
                             </h1>
-                            <div className="inline-flex py-1 px-3 rounded-xl items-center bg-content1/40 backdrop-blur-xl">
-                                {Array.from({ length: currentDisc.star }, (_, i) => (
-                                    <FaStar size={18} key={i} />
-                                ))}
+                            <div className="flex gap-2">
+                                <div className="inline-flex py-1 px-3 rounded-2xl items-center bg-content1/40 backdrop-blur-xl">
+                                    {Array.from({ length: currentDisc.star }, (_, i) => (
+                                        <FaStar size={18} key={i} />
+                                    ))}
+                                </div>
+                                <div className="inline-flex bg-content1/40 backdrop-blur-xl py-1 px-3 rounded-2xl items-center justify-center gap-1">
+                                    <Image
+                                        src={`/elements/${currentDisc.element}.png`}
+                                        alt={currentDisc.element}
+                                        loading="eager"
+                                        height={24}
+                                        width={24}
+                                    />
+                                    <span className="font-medium mb-0.5">{currentDisc.element}</span>
+                                </div>
                             </div>
                         </div>
-                        <div className="space-y-4">
+                        <div className="space-y-5">
                             <Tabs defaultTab="attributes">
                                 <div className="flex">
                                     <Tab value="attributes" title="Attributes" />
                                     <Tab value="skills" title="Skills" />
                                 </div>
-                                <TabPanel value="attributes">Attributes</TabPanel>
+                                <AttributesTab disc={currentDisc} />
                                 <TabPanel value="skills">Skills</TabPanel>
                             </Tabs>
                         </div>

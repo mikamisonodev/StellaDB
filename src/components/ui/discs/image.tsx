@@ -15,7 +15,7 @@ const DiscImage = ({ id, name }: DiscImageProps) => {
     return (
         <Image
             src={`${ASSET_URL}/Assets/assetbundles/disc/${discId}/${discId}_B.png`}
-            className="object-cover object-top rounded-lg h-full"
+            className="object-cover object-top rounded-lg aspect-square"
             height={600}
             width={600}
             alt={name}

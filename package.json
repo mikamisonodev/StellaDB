@@ -20,6 +20,7 @@
     "@heroui/link": "^2.2.24",
     "@heroui/navbar": "^2.2.26",
     "@heroui/select": "^2.4.29",
+    "@heroui/slider": "^2.4.26",
     "@heroui/system": "^2.4.24",
     "@heroui/theme": "^2.4.24",
     "@react-aria/ssr": "^3.9.10",
