@@ -3,7 +3,7 @@
 import type { NextPage } from "next";
 import { startTransition, useEffect } from "react";
 
-import DiscCard from "@/components/ui/disc-card";
+import DiscCard from "@/components/ui/cards/disc-card";
 import Filter from "@/components/ui/filter";
 import * as filters from "@/config/filters/discs";
 import { useDataStore, useGlobalStore } from "@/store";

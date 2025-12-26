@@ -1,6 +1,7 @@
 "use client";
 
 import { Button } from "@heroui/button";
+import { Checkbox } from "@heroui/checkbox";
 import { Dropdown, DropdownItem, DropdownMenu, DropdownTrigger } from "@heroui/dropdown";
 import { Slider } from "@heroui/slider";
 import { useState } from "react";
@@ -8,6 +9,7 @@ import { FaCompactDisc } from "react-icons/fa";
 import { FaAnglesUp, FaEllipsis } from "react-icons/fa6";
 
 import Attributes from "@/components/ui/attributes";
+import Materials from "@/components/ui/materials";
 import { TabPanel } from "@/components/ui/tabs";
 import { cn } from "@/lib/utils";
 import { Disc } from "@/typings/discs";
@@ -17,7 +19,9 @@ type AttributesTabProps = {
 };
 
 const AttributesTab = ({ disc }: AttributesTabProps) => {
+    const [convertToT1, setConvertToT1] = useState(false);
     const [upgradeLevel, setUpgradeLevel] = useState(0);
+    const [accumulate, setAccumulate] = useState(false);
     const [level, setLevel] = useState(1);
     const [dupe, setDupe] = useState(1);
 
@@ -82,10 +86,32 @@ const AttributesTab = ({ disc }: AttributesTabProps) => {
                     Lv.{level}
                 </p>
             </div>
-            <div className="bg-content1/40 backdrop-blur-xl rounded-xl py-1 px-3 text-center">
-                {upgradeLevel !== 0
-                    ? Object.entries(disc.upgrade[upgradeLevel - 1]).map(([key, value]) => `${key}: ${value}`)
-                    : "No materials required."}
+            <div className="bg-content1/40 backdrop-blur-xl rounded-xl py-2 px-3 text-center">
+                <div className="flex items-center gap-3">
+                    <div className="bg-content1/40 px-4 py-1 rounded-2xl">
+                        <Checkbox
+                            isSelected={accumulate}
+                            classNames={{ wrapper: "before:border-content1-foreground/30" }}
+                            onValueChange={checked => setAccumulate(checked)}
+                        >
+                            <span className="text-foreground">Accumulate</span>
+                        </Checkbox>
+                    </div>
+                    <div className="bg-content1/40 px-4 py-1 rounded-2xl">
+                        <Checkbox
+                            isSelected={convertToT1}
+                            classNames={{ wrapper: "before:border-content1-foreground/30" }}
+                            onValueChange={checked => setConvertToT1(checked)}
+                        >
+                            <span className="text-foreground">Convert to Tier 1</span>
+                        </Checkbox>
+                    </div>
+                </div>
+                {upgradeLevel !== 0 ? (
+                    <Materials disc={disc} upgradeLevel={upgradeLevel} accumulate={accumulate} />
+                ) : (
+                    <p className="py-4">No materials required.</p>
+                )}
             </div>
             <div className="flex items-center justify-between">
                 <div className="inline-flex items-center bg-content1/40 backdrop-blur-xl rounded-2xl py-2 px-3 gap-1">

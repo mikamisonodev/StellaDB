@@ -3,8 +3,8 @@
 import type { NextPage } from "next";
 import { startTransition, useEffect } from "react";
 
+import TrekkerCard from "@/components/ui/cards/trekker-card";
 import Filter from "@/components/ui/filter";
-import TrekkerCard from "@/components/ui/trekker-card";
 import * as filters from "@/config/filters/trekkers";
 import { useDataStore, useGlobalStore } from "@/store";
 import type { Trekker } from "@/typings/trekker";

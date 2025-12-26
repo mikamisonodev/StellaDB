@@ -5,6 +5,7 @@ import MiniSearch from "minisearch";
 import { create } from "zustand";
 
 import type { Disc } from "@/typings/discs";
+import { Item } from "@/typings/item";
 import type { Trekker } from "@/typings/trekker";
 
 import { checkEmptyObject } from "./lib/utils";
@@ -32,6 +33,10 @@ type DataStore = {
     discs: Record<string, Disc>;
     discSearch: MiniSearch<Disc>;
     fetchDiscs: () => Promise<void>;
+    item: Record<string, any>;
+    totalItems: number;
+    itemSearch: MiniSearch<Item>;
+    fetchItems: () => Promise<void>;
 };
 
 export const useDataStore = create<DataStore>((set, store) => ({
@@ -93,6 +98,31 @@ export const useDataStore = create<DataStore>((set, store) => ({
         set({
             totalDiscs: list.length,
             discs: response.data,
+        });
+    },
+    item: {},
+    totalItems: 0,
+    itemSearch: new MiniSearch<Item>({
+        searchOptions: { prefix: true },
+        storeFields: ["id", "name"],
+        fields: ["name"],
+        idField: "id",
+    }),
+    fetchItems: async () => {
+        const data = store();
+
+        if (!checkEmptyObject(data.item)) return;
+
+        const response = await axios.get<Record<string, Item>>("/api/items");
+        const list = Object.values(response.data);
+
+        if (data.itemSearch.documentCount === 0) {
+            data.itemSearch.addAll(list);
+        }
+
+        set({
+            totalItems: list.length,
+            item: response.data,
         });
     },
 }));

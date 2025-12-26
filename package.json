@@ -15,6 +15,7 @@
   },
   "dependencies": {
     "@heroui/button": "^2.2.28",
+    "@heroui/checkbox": "^2.3.29",
     "@heroui/drawer": "^2.2.25",
     "@heroui/dropdown": "^2.3.29",
     "@heroui/input": "^2.4.29",
