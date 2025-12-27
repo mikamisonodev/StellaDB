@@ -17,12 +17,13 @@ type Props = {
 
 const Page: NextPage<Props> = ({ params }) => {
     const pathParams = use(params);
-    const { discs, totalDiscs, fetchDiscs } = useDataStore();
+    const { discs, totalDiscs, fetchDiscs, fetchItems } = useDataStore();
     const [currentDisc, setCurrentDisc] = useState<Disc | null>(null);
 
     useEffect(() => {
         startTransition(() => {
             fetchDiscs();
+            fetchItems();
         });
     }, []);
 

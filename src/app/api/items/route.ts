@@ -3,7 +3,7 @@ import { NextResponse } from "next/server";
 import { request } from "@/api/request";
 
 export const GET = async () => {
-    const response = await request.get("/items.json");
+    const response = await request.get("/item.json");
 
     return NextResponse.json(response.data);
 };

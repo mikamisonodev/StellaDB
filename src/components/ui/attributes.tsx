@@ -6,10 +6,16 @@ import { PiHeartFill, PiSwordFill } from "react-icons/pi";
 const icons: Record<string, IconType> = {
     ATK: PiSwordFill,
     HP: PiHeartFill,
+    "Ventus DMG": PiSwordFill,
+    "Aqua DMG": PiSwordFill,
+    "Ignis DMG": PiSwordFill,
+    "Terra DMG": PiSwordFill,
+    "Umbra DMG": PiSwordFill,
+    "Lux DMG": PiSwordFill,
 };
 
 type AttributesProps = {
-    attr: Record<string, number>;
+    attr: Record<string, number | string>;
     buff?: Record<string, number>;
 };
 
@@ -26,7 +32,9 @@ const Attributes = ({ attr, buff }: AttributesProps) => {
                             <Icon size={18} className="h-4.5" />
                             <span className="mb-0.5">{key}</span>
                         </div>
-                        <p className="mb-0.5 font-semibold">{(value + buffValue).toLocaleString()} </p>
+                        <p className="mb-0.5 font-semibold">
+                            {typeof value === "number" ? (value + buffValue).toLocaleString() : value}{" "}
+                        </p>
                     </div>
                 );
             })}
