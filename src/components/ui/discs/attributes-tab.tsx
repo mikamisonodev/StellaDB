@@ -3,7 +3,7 @@
 import { Button } from "@heroui/button";
 import { Dropdown, DropdownItem, DropdownMenu, DropdownTrigger } from "@heroui/dropdown";
 import { Slider } from "@heroui/slider";
-import { useState } from "react";
+import { useMemo, useState } from "react";
 import { FaCompactDisc } from "react-icons/fa";
 import { FaAnglesUp, FaEllipsis } from "react-icons/fa6";
 
@@ -22,6 +22,10 @@ const AttributesTab = ({ disc }: AttributesTabProps) => {
     const [level, setLevel] = useState(1);
     const [dupe, setDupe] = useState(1);
 
+    const attributes = useMemo(() => {
+        return Object.assign(disc.stat[level + upgradeLevel - 1], disc.supportNote[upgradeLevel]);
+    }, [level, upgradeLevel]);
+
     const handleUpgradeLevelChange = (value: number) => {
         const remaining = +(level !== 1) * (level % 10);
 
@@ -37,10 +41,7 @@ const AttributesTab = ({ disc }: AttributesTabProps) => {
 
     return (
         <TabPanel className="space-y-2" value="attributes">
-            <Attributes
-                attr={disc.stat[level + upgradeLevel - 1] as unknown as Record<string, number>}
-                buff={{ ATK: dupe > 1 ? disc.dupe[dupe - 2].ATK : 0 }}
-            />
+            <Attributes attr={attributes} buff={{ ATK: dupe > 1 ? disc.dupe[dupe - 2].ATK : 0 }} />
             <div className="flex items-center w-full gap-4">
                 <Slider
                     onChange={value => handleUpgradeLevelChange(value as number)}

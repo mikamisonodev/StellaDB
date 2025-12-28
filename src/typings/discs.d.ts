@@ -6,7 +6,7 @@ export interface Disc {
     tag: string[];
     mainSkill: MainSkill;
     supportNote: Record<string, number>[];
-    stat: Stat[];
+    stat: Record<string, number | string>[];
     dupe: Dupe[];
     upgrade: Record<string, number>[];
 }
@@ -20,11 +20,6 @@ export interface MainSkill {
     params: string;
     icon: string;
     iconBg: string;
-}
-
-export interface Stat {
-    HP: number;
-    ATK: number;
 }
 
 export interface Dupe {
