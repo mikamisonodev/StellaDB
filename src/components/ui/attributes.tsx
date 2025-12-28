@@ -33,7 +33,7 @@ const Attributes = ({ attr, buff }: AttributesProps) => {
                             <span className="mb-0.5">{key}</span>
                         </div>
                         <p className="mb-0.5 font-semibold">
-                            {typeof value === "number" ? (value + buffValue).toLocaleString() : value}{" "}
+                            {typeof value === "number" ? (value + buffValue).toLocaleString() : value}
                         </p>
                     </div>
                 );

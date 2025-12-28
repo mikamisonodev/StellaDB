@@ -1,11 +1,9 @@
 "use client";
 
 import { Button } from "@heroui/button";
-import { Checkbox } from "@heroui/checkbox";
 import { Dropdown, DropdownItem, DropdownMenu, DropdownTrigger } from "@heroui/dropdown";
 import { Slider } from "@heroui/slider";
-import Image from "next/image";
-import { useMemo, useState } from "react";
+import { useState } from "react";
 import { FaCompactDisc } from "react-icons/fa";
 import { FaAnglesUp, FaEllipsis } from "react-icons/fa6";
 
@@ -21,31 +19,8 @@ type AttributesTabProps = {
 
 const AttributesTab = ({ disc }: AttributesTabProps) => {
     const [upgradeLevel, setUpgradeLevel] = useState(0);
-    const [accumulate, setAccumulate] = useState(false);
     const [level, setLevel] = useState(1);
     const [dupe, setDupe] = useState(1);
-
-    const caclulateMaterials = useMemo(() => {
-        if (upgradeLevel === 0) {
-            return { Dorra: 0, materials: [] };
-        }
-
-        if (!accumulate) {
-            const { Dorra: requiredDorra, ...rest } = disc.upgrade[upgradeLevel - 1];
-            return { Dorra: requiredDorra, materials: Object.entries(rest) };
-        }
-
-        const accumulatedMaterials: Record<string, number> = {};
-
-        for (let i = 0; i < upgradeLevel; i++) {
-            for (const [key, value] of Object.entries(disc.upgrade[i])) {
-                accumulatedMaterials[key] = accumulatedMaterials[key] ? accumulatedMaterials[key] + value : value;
-            }
-        }
-
-        const { Dorra, ...materials } = accumulatedMaterials;
-        return { Dorra, materials: Object.entries(materials) };
-    }, [accumulate, upgradeLevel]);
 
     const handleUpgradeLevelChange = (value: number) => {
         const remaining = +(level !== 1) * (level % 10);
@@ -108,28 +83,7 @@ const AttributesTab = ({ disc }: AttributesTabProps) => {
                     Lv.{level}
                 </p>
             </div>
-            <div className="bg-content1/40 backdrop-blur-xl rounded-xl py-2 px-3 text-center">
-                <div className="flex items-center justify-between">
-                    <div className="bg-content1/40 px-4 py-1 rounded-2xl">
-                        <Checkbox
-                            isSelected={accumulate}
-                            classNames={{ wrapper: "before:border-content1-foreground/30" }}
-                            onValueChange={checked => setAccumulate(checked)}
-                        >
-                            Accumulate
-                        </Checkbox>
-                    </div>
-                    <div className="flex items-center bg-content1/40 pl-2 pr-4 rounded-2xl">
-                        <Image src="/icons/Dorra.png" width={32} height={32} alt="Dorra" />
-                        <span>x{caclulateMaterials.Dorra.toLocaleString()}</span>
-                    </div>
-                </div>
-                {upgradeLevel !== 0 ? (
-                    <Materials materials={caclulateMaterials.materials} />
-                ) : (
-                    <p className="py-4">No materials required.</p>
-                )}
-            </div>
+            <Materials upgrades={disc.upgrade} upgradeLevel={upgradeLevel} />
             <div className="flex items-center justify-between">
                 <div className="inline-flex items-center bg-content1/40 backdrop-blur-xl rounded-2xl py-2 px-3 gap-1">
                     {Array.from({ length: disc.dupe.length + 1 }, (_, i) => (
