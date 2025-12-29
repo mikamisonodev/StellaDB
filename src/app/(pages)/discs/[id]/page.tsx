@@ -35,10 +35,10 @@ const Page: NextPage<Props> = ({ params }) => {
     }, [totalDiscs]);
 
     return (
-        <div className="flex flex-col items-center lg:flex-row lg:gap-3 h-[calc(100vh-3.5rem)] py-3 px-6">
+        <div className="flex flex-col lg:flex-row lg:gap-3 min-h-[calc(100vh-3.5rem)] py-3 px-6">
             {currentDisc ? (
                 <>
-                    <div className="flex items-center justify-center h-fit lg:w-1/2 w-full relative">
+                    <div className="flex justify-center lg:w-1/2 w-full lg:sticky lg:top-20 lg:self-start lg:h-fit">
                         <DiscImage id={currentDisc.id.toString()} name={currentDisc.name} />
                     </div>
                     <div className="self-start space-y-3 py-4 w-full flex-1">

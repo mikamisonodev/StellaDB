@@ -36,27 +36,29 @@ const SkillsTab = ({ disc }: SkillsTabProps) => {
             {disc.secondarySkill2 && (
                 <DiscSkill dupe={harmonyLevel} skill={disc.secondarySkill2} label="Secondary Skill" />
             )}
-            <div className="flex items-center w-full gap-4">
-                <Slider
-                    onChange={value => setHarmonyLevel(value as number)}
-                    renderThumb={props => (
-                        <div {...props} className="size-5 rounded-full bg-default-foreground top-1/2" />
-                    )}
-                    minValue={1}
-                    classNames={{
-                        track: "bg-content1/40 backdrop-blur-xl data-[fill-start=true]:border-s-transparent border-x-2",
-                        filler: "bg-transparent",
-                    }}
-                    maxValue={5}
-                    className="w-full"
-                    aria-label="Level"
-                    value={harmonyLevel}
-                    step={1}
-                />
-                <p className="bg-content1/40 backdrop-blur-xl whitespace-nowrap font-medium py-1 px-4 rounded-2xl">
-                    Lv.{harmonyLevel}
-                </p>
-            </div>
+            {(disc.secondarySkill1 || disc.secondarySkill2) && (
+                <div className="flex items-center w-full gap-4">
+                    <Slider
+                        onChange={value => setHarmonyLevel(value as number)}
+                        renderThumb={props => (
+                            <div {...props} className="size-5 rounded-full bg-default-foreground top-1/2" />
+                        )}
+                        minValue={1}
+                        classNames={{
+                            track: "bg-content1/40 backdrop-blur-xl data-[fill-start=true]:border-s-transparent border-x-2",
+                            filler: "bg-transparent",
+                        }}
+                        maxValue={5}
+                        className="w-full"
+                        aria-label="Level"
+                        value={harmonyLevel}
+                        step={1}
+                    />
+                    <p className="bg-content1/40 backdrop-blur-xl whitespace-nowrap font-medium py-1 px-4 rounded-2xl">
+                        Lv.{harmonyLevel}
+                    </p>
+                </div>
+            )}
         </TabPanel>
     );
 };
