@@ -7,7 +7,8 @@ import { FaStar } from "react-icons/fa6";
 
 import AttributesTab from "@/components/ui/discs/attributes-tab";
 import DiscImage from "@/components/ui/discs/image";
-import { Tab, TabPanel, Tabs } from "@/components/ui/tabs";
+import SkillsTab from "@/components/ui/discs/skills-tab";
+import { Tab, Tabs } from "@/components/ui/tabs";
 import { useDataStore } from "@/store";
 import type { Disc } from "@/typings/discs";
 
@@ -70,7 +71,7 @@ const Page: NextPage<Props> = ({ params }) => {
                                     <Tab value="skills" title="Skills" />
                                 </div>
                                 <AttributesTab disc={currentDisc} />
-                                <TabPanel value="skills">Skills</TabPanel>
+                                <SkillsTab disc={currentDisc} />
                             </Tabs>
                         </div>
                     </div>

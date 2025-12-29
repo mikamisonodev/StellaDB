@@ -4,24 +4,24 @@ export interface Disc {
     star: number;
     element: string;
     tag: string[];
-    mainSkill: MainSkill;
+    mainSkill: Skill;
     supportNote: Record<string, number>[];
     stat: Record<string, number | string>[];
-    dupe: Dupe[];
+    dupe: Record<string, number>[];
     upgrade: Record<string, number>[];
+    secondarySkill1?: Skill;
+    secondarySkill2?: Skill;
 }
 
-export interface MainSkill {
+export interface Skill {
     id: number;
     name: string;
     desc: string;
     effectType: string[];
     effectData: string[];
+    buffIcon: string[];
     params: string;
+    requirements?: Record<string, number>[];
     icon: string;
     iconBg: string;
-}
-
-export interface Dupe {
-    ATK: number;
 }
