@@ -7,6 +7,7 @@ import { create } from "zustand";
 import type { Disc } from "@/typings/discs";
 import { Item } from "@/typings/item";
 import type { Trekker } from "@/typings/trekker";
+import { Word } from "@/typings/word";
 
 import { checkEmptyObject } from "./lib/utils";
 
@@ -37,6 +38,9 @@ type DataStore = {
     totalItems: number;
     itemSearch: MiniSearch<Item>;
     fetchItems: () => Promise<void>;
+    word: Record<string, Word>;
+    totalWords: number;
+    fetchWords: () => Promise<void>;
 };
 
 export const useDataStore = create<DataStore>((set, store) => ({
@@ -123,6 +127,20 @@ export const useDataStore = create<DataStore>((set, store) => ({
         set({
             totalItems: list.length,
             item: response.data,
+        });
+    },
+    word: {},
+    totalWords: 0,
+    fetchWords: async () => {
+        const data = store();
+
+        if (!checkEmptyObject(data.word)) return;
+
+        const response = await axios.get<Record<string, Word>>("/api/words");
+
+        set({
+            totalWords: Object.keys(response.data).length,
+            word: response.data,
         });
     },
 }));

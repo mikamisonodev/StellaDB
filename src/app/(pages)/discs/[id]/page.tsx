@@ -18,13 +18,14 @@ type Props = {
 
 const Page: NextPage<Props> = ({ params }) => {
     const pathParams = use(params);
-    const { discs, totalDiscs, fetchDiscs, fetchItems } = useDataStore();
+    const { discs, totalDiscs, fetchDiscs, fetchItems, fetchWords } = useDataStore();
     const [currentDisc, setCurrentDisc] = useState<Disc | null>(null);
 
     useEffect(() => {
         startTransition(() => {
             fetchDiscs();
             fetchItems();
+            fetchWords();
         });
     }, []);
 
@@ -46,7 +47,7 @@ const Page: NextPage<Props> = ({ params }) => {
                             <h1 className="lg:text-5xl text-3xl font-exo italic tracking-wide text-foreground">
                                 {currentDisc.name}
                             </h1>
-                            <div className="flex gap-2">
+                            <div className="flex flex-wrap gap-2">
                                 <div className="inline-flex py-1 px-3 rounded-2xl items-center bg-content1/40 backdrop-blur-xl">
                                     {Array.from({ length: currentDisc.star }, (_, i) => (
                                         <FaStar size={18} key={i} />
@@ -62,6 +63,14 @@ const Page: NextPage<Props> = ({ params }) => {
                                     />
                                     <span className="font-medium mb-0.5">{currentDisc.element}</span>
                                 </div>
+                                {currentDisc.tag.map(tag => (
+                                    <div
+                                        className="inline-flex py-1 px-3 rounded-2xl items-center bg-content1/40 backdrop-blur-xl"
+                                        key={tag}
+                                    >
+                                        {tag}
+                                    </div>
+                                ))}
                             </div>
                         </div>
                         <div className="space-y-5">

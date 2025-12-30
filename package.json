@@ -25,6 +25,7 @@
     "@heroui/slider": "^2.4.26",
     "@heroui/system": "^2.4.24",
     "@heroui/theme": "^2.4.24",
+    "@heroui/tooltip": "^2.2.26",
     "@react-aria/ssr": "^3.9.10",
     "axios": "^1.13.2",
     "clsx": "^2.1.1",
