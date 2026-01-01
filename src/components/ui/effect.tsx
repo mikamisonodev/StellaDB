@@ -4,6 +4,7 @@ import { Tooltip } from "@heroui/tooltip";
 import Image from "next/image";
 
 import { ASSET_URL } from "@/config/constant";
+import { cn } from "@/lib/utils";
 import { Word } from "@/typings/word";
 
 const Effect = ({ word }: { word: Word }) => {
@@ -17,7 +18,12 @@ const Effect = ({ word }: { word: Word }) => {
 
     return (
         <Tooltip placement="top" content={tooltipContent} as="span">
-            <div className="bg-primary/20 text-primary font-medium pr-2 pl-1 rounded-lg inline-flex items-center align-bottom">
+            <span
+                className={cn(
+                    "bg-primary/50 text-white font-medium pr-2 rounded-lg inline-flex items-center align-bottom",
+                    word.icon ? "pl-1" : "px-2",
+                )}
+            >
                 {word.icon && (
                     <Image
                         src={ASSET_URL + `/Assets/assetbundles/icon/zzzother/${word.icon}.png`}
@@ -27,7 +33,7 @@ const Effect = ({ word }: { word: Word }) => {
                     />
                 )}
                 {word.name}
-            </div>
+            </span>
         </Tooltip>
     );
 };

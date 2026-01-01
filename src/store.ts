@@ -82,7 +82,6 @@ export const useDataStore = create<DataStore>((set, store) => ({
     discs: {},
     totalDiscs: 0,
     discSearch: new MiniSearch<Disc>({
-        searchOptions: { prefix: true },
         storeFields: ["id", "name"],
         fields: ["name"],
         idField: "id",
@@ -107,7 +106,6 @@ export const useDataStore = create<DataStore>((set, store) => ({
     item: {},
     totalItems: 0,
     itemSearch: new MiniSearch<Item>({
-        searchOptions: { prefix: true },
         storeFields: ["id", "name"],
         fields: ["name"],
         idField: "id",

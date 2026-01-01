@@ -8,6 +8,7 @@ import { ASSET_URL } from "@/config/constant";
 import { imageOptimize } from "@/lib/utils";
 import { useDataStore } from "@/store";
 import type { Skill } from "@/typings/discs";
+import { Item } from "@/typings/item";
 
 type DiscSkillProps = {
     dupe: number;
@@ -21,7 +22,7 @@ const MARK_REGEX = /(##.*?#\d{1,4}#)/g;
 const MARK_VAR_REGEX = /##(.*?)#(\d{1,4})#/;
 
 const DiscSkill = ({ dupe, skill, label }: DiscSkillProps) => {
-    const { word } = useDataStore();
+    const { word, item, itemSearch } = useDataStore();
 
     const descriptionWithVar = useMemo(() => {
         const rawDesc = skill.desc.replace(COLOR_REGEX, "$1").split(VARIABLE_REGEX);
@@ -57,6 +58,17 @@ const DiscSkill = ({ dupe, skill, label }: DiscSkillProps) => {
         return result;
     }, [dupe]);
 
+    const requirements = useMemo(() => {
+        if (!skill.requirements) return [];
+
+        return Object.entries(skill.requirements[dupe - 1]).map(([key, value]) => {
+            const noteItem = itemSearch.search(key);
+            const note: Item = item[noteItem[0].id];
+
+            return { note, value };
+        });
+    }, [dupe]);
+
     return (
         <div className="bg-content1/40 backdrop-blur-xl rounded-xl p-4 space-y-2">
             <div className="flex">
@@ -80,6 +92,21 @@ const DiscSkill = ({ dupe, skill, label }: DiscSkillProps) => {
                 </div>
             </div>
             <p>{descriptionWithVar}</p>
+            {skill.requirements && (
+                <div className="flex items-center gap-3">
+                    {requirements.map(req => (
+                        <div className="flex items-center" key={req.note.id}>
+                            <Image
+                                src={ASSET_URL + `/Assets/assetbundles/icon/note/note_${req.note.id}_S.png`}
+                                alt={req.note.name}
+                                height={32}
+                                width={32}
+                            />
+                            <span>{req.value}</span>
+                        </div>
+                    ))}
+                </div>
+            )}
         </div>
     );
 };
