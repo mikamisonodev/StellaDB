@@ -39,19 +39,19 @@ const Page: NextPage<Props> = ({ params }) => {
         <div className="flex flex-col lg:flex-row lg:gap-3 min-h-[calc(100vh-3.5rem)] py-3 px-6">
             {currentTrekker ? (
                 <>
-                    <div className="flex justify-center lg:w-2/5 w-full lg:sticky lg:top-20 lg:self-start lg:h-fit"></div>
+                    <div className="flex justify-center lg:w-1/2 w-full lg:sticky lg:top-20 lg:self-start lg:h-fit"></div>
                     <div className="self-start space-y-3 py-4 w-full flex-1">
                         <div className="space-y-5">
                             <h1 className="lg:text-5xl text-3xl font-exo italic tracking-wide text-foreground">
                                 {currentTrekker.name}
                             </h1>
                             <div className="flex flex-wrap gap-2">
-                                <div className="inline-flex py-1 px-3 rounded-2xl items-center bg-content1/40 backdrop-blur-xl">
+                                <div className="inline-flex py-1 px-4 rounded-2xl items-center bg-content1/40 backdrop-blur-xl">
                                     {Array.from({ length: currentTrekker.star }, (_, i) => (
                                         <FaStar size={18} key={i} />
                                     ))}
                                 </div>
-                                <div className="inline-flex bg-[#36a] py-1 px-3 rounded-2xl items-center justify-center gap-1.5">
+                                <div className="inline-flex bg-[#36a] py-1 px-4 rounded-2xl items-center justify-center gap-1.5">
                                     <Image
                                         src={`/attack-types/${currentTrekker.attackType}.png`}
                                         alt={currentTrekker.attackType}
@@ -63,13 +63,13 @@ const Page: NextPage<Props> = ({ params }) => {
                                 </div>
                                 <div
                                     className={cn(
-                                        "inline-flex py-1 px-3 rounded-2xl items-center text-white",
+                                        "inline-flex py-1 px-4 rounded-2xl items-center font-medium text-white",
                                         handleClassStyle(currentTrekker.class),
                                     )}
                                 >
                                     {currentTrekker.class}
                                 </div>
-                                <div className="inline-flex bg-content1/40 backdrop-blur-xl py-1 px-3 rounded-2xl items-center justify-center gap-1">
+                                <div className="inline-flex bg-content1/40 backdrop-blur-xl py-1 px-4 rounded-2xl items-center justify-center gap-1">
                                     <Image
                                         src={`/elements/${currentTrekker.element}.png`}
                                         alt={currentTrekker.element}

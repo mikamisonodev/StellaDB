@@ -17,6 +17,10 @@ const SkillsTab = ({ trekker }: SkillsTabProps) => {
 
     return (
         <TabPanel className="space-y-4" value="skills">
+            <TrekkerSkill level={level} upgrade={upgradeLevel} skill={trekker.normalAtk} label="Normal Attack" />
+            <TrekkerSkill level={level} upgrade={upgradeLevel} skill={trekker.skill} label="Main Skill" />
+            <TrekkerSkill level={level} upgrade={upgradeLevel} skill={trekker.supportSkill} label="Support Skill" />
+            <TrekkerSkill level={level} upgrade={upgradeLevel} skill={trekker.ultimate} label="Ultimate Skill" />
             <div className="flex items-center w-full gap-4">
                 <Slider
                     onChange={value => setUpgradeLevel(value as number)}
@@ -59,10 +63,6 @@ const SkillsTab = ({ trekker }: SkillsTabProps) => {
                     Lv.{level}
                 </p>
             </div>
-            <TrekkerSkill level={level} upgrade={upgradeLevel} skill={trekker.normalAtk} label="Normal Attack" />
-            <TrekkerSkill level={level} upgrade={upgradeLevel} skill={trekker.skill} label="Main Skill" />
-            <TrekkerSkill level={level} upgrade={upgradeLevel} skill={trekker.supportSkill} label="Support Skill" />
-            <TrekkerSkill level={level} upgrade={upgradeLevel} skill={trekker.ultimate} label="Ultimate Skill" />
         </TabPanel>
     );
 };

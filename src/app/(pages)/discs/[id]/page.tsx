@@ -48,12 +48,12 @@ const Page: NextPage<Props> = ({ params }) => {
                                 {currentDisc.name}
                             </h1>
                             <div className="flex flex-wrap gap-2">
-                                <div className="inline-flex py-1 px-3 rounded-2xl items-center bg-content1/40 backdrop-blur-xl">
+                                <div className="inline-flex py-1 px-4 rounded-2xl items-center bg-content1/40 backdrop-blur-xl">
                                     {Array.from({ length: currentDisc.star }, (_, i) => (
                                         <FaStar size={18} key={i} />
                                     ))}
                                 </div>
-                                <div className="inline-flex bg-content1/40 backdrop-blur-xl py-1 px-3 rounded-2xl items-center justify-center gap-1">
+                                <div className="inline-flex bg-content1/40 backdrop-blur-xl py-1 px-4 rounded-2xl items-center justify-center gap-1">
                                     <Image
                                         src={`/elements/${currentDisc.element}.png`}
                                         alt={currentDisc.element}
@@ -65,7 +65,7 @@ const Page: NextPage<Props> = ({ params }) => {
                                 </div>
                                 {currentDisc.tag.map(tag => (
                                     <div
-                                        className="inline-flex py-1 px-3 rounded-2xl items-center bg-content1/40 backdrop-blur-xl"
+                                        className="inline-flex py-1 px-4 rounded-2xl items-center bg-content1/40 backdrop-blur-xl"
                                         key={tag}
                                     >
                                         {tag}

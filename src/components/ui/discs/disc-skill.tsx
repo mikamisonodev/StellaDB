@@ -4,7 +4,7 @@ import Image from "next/image";
 import { type JSX, useMemo } from "react";
 
 import Effect from "@/components/ui/effect";
-import { ASSET_URL } from "@/config/constant";
+import { ASSET_URL, COLOR_REGEX, MARK_REGEX, MARK_VAR_REGEX } from "@/config/constant";
 import { imageOptimize } from "@/lib/utils";
 import { useDataStore } from "@/store";
 import type { Skill } from "@/typings/discs";
@@ -18,15 +18,12 @@ type DiscSkillProps = {
 
 const VARIABLE_REGEX = /(\{\d+\})/g;
 const SPLIT_REGEX = /(\{\d+\})|\u000b/g;
-const COLOR_REGEX = /<color=#ec6d21>(.*?)<\/color>/g;
-const MARK_REGEX = /(##.*?#\d{1,4}#)/g;
-const MARK_VAR_REGEX = /##(.*?)#(\d{1,4})#/;
 
 const DiscSkill = ({ dupe, skill, label }: DiscSkillProps) => {
     const { word, item, itemSearch } = useDataStore();
 
     const descriptionWithVar = useMemo(() => {
-        const rawDesc = skill.desc.replace(COLOR_REGEX, "$1");
+        const rawDesc = skill.desc.replace(COLOR_REGEX, "$2");
         const params = skill.params.split("/")[dupe - 1].split(",");
         const result: (string | JSX.Element)[] = [];
 
