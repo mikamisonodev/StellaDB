@@ -17,6 +17,7 @@ type DiscSkillProps = {
 };
 
 const VARIABLE_REGEX = /(\{\d+\})/g;
+const SPLIT_REGEX = /(\{\d+\})|\u000b/g;
 const COLOR_REGEX = /<color=#ec6d21>(.*?)<\/color>/g;
 const MARK_REGEX = /(##.*?#\d{1,4}#)/g;
 const MARK_VAR_REGEX = /##(.*?)#(\d{1,4})#/;
@@ -25,26 +26,35 @@ const DiscSkill = ({ dupe, skill, label }: DiscSkillProps) => {
     const { word, item, itemSearch } = useDataStore();
 
     const descriptionWithVar = useMemo(() => {
-        const rawDesc = skill.desc.replace(COLOR_REGEX, "$1").split(VARIABLE_REGEX);
+        const rawDesc = skill.desc.replace(COLOR_REGEX, "$1");
         const params = skill.params.split("/")[dupe - 1].split(",");
-
         const result: (string | JSX.Element)[] = [];
 
-        for (const part of rawDesc) {
+        const parts = rawDesc.split(SPLIT_REGEX);
+
+        for (let i = 0; i < parts.length; i++) {
+            const part = parts[i];
+
+            if (!part) {
+                result.push(<br key={i} />);
+                continue;
+            }
+
             if (VARIABLE_REGEX.test(part)) {
                 const index = part.slice(1, -1);
+
                 result.push(
-                    <span className="font-medium" key={part}>
+                    <span className="font-medium" key={i}>
                         {params[parseInt(index) - 1]}
                     </span>,
                 );
             } else {
-                const cleanedPart = part.replace(/\u000b/g, "\n");
-                const subParts = cleanedPart.split(MARK_REGEX);
+                const subParts = part.split(MARK_REGEX);
 
                 for (const subPart of subParts) {
-                    if (MARK_REGEX.test(subPart)) {
-                        const match = MARK_VAR_REGEX.exec(subPart)!;
+                    const match = MARK_VAR_REGEX.exec(subPart);
+
+                    if (match) {
                         const effect = word[match[2]];
 
                         result.push(<Effect word={effect} key={subPart} />);

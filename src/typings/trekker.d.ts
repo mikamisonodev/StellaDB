@@ -15,10 +15,10 @@ export interface Trekker {
     loveGift: string[];
     hateGift: any[];
     date: DatingEvent[];
-    normalAtk: NormalAtk;
+    normalAtk: Skill;
     skill: Skill;
-    supportSkill: SupportSkill;
-    ultimate: Ultimate;
+    supportSkill: Skill;
+    ultimate: Skill;
     potential: Potential;
     talent: Talent[];
     stat: Stat[];
@@ -33,55 +33,17 @@ export interface DatingEvent {
     secondChoice: string;
 }
 
-export interface NormalAtk {
-    id: number;
-    name: string;
-    briefDesc: string;
-    desc: string;
-    damageType: string[];
-    effectType: any[];
-    addAttrType: any[];
-    params: string[];
-    icon: string;
-}
-
 export interface Skill {
     id: number;
     name: string;
-    cooldown: string;
+    cooldown?: string;
+    energy?: number;
     briefDesc: string;
     desc: string;
     damageType: string[];
     effectType: string[];
-    addAttrType: any[];
-    params: [string, string, string, string, number];
-    icon: string;
-}
-
-export interface SupportSkill {
-    id: number;
-    name: string;
-    cooldown: string;
-    briefDesc: string;
-    desc: string;
-    damageType: string[];
-    effectType: any[];
-    addAttrType: any[];
-    params: string[];
-    icon: string;
-}
-
-export interface Ultimate {
-    id: number;
-    name: string;
-    cooldown: string;
-    energy: number;
-    briefDesc: string;
-    desc: string;
-    damageType: string[];
-    effectType: any[];
-    addAttrType: any[];
-    params: string[];
+    addAttrType: string[];
+    params: (string | number)[];
     icon: string;
 }
 
