@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import { JSX, useMemo } from "react";
+import { FaBolt, FaClock } from "react-icons/fa6";
 
 import Effect from "@/components/ui/effect";
 import { ASSET_URL, COLOR_REGEX, MARK_REGEX, MARK_VAR_REGEX } from "@/config/constant";
@@ -106,6 +107,22 @@ const TrekkerSkill = ({ level, upgrade = 0, skill, label }: DiscSkillProps) => {
                 </div>
             </div>
             <p>{descriptionWithVar}</p>
+            {(skill.cooldown || skill.energy) && (
+                <div className="flex items-center gap-2">
+                    {skill.cooldown && (
+                        <div className="inline-flex items-center gap-1.5 bg-content1/40 backdrop-blur-xl py-0.5 px-3 rounded-2xl">
+                            <FaClock />
+                            <span className="mb-0.5 font-medium">{skill.cooldown}</span>
+                        </div>
+                    )}
+                    {skill.energy && (
+                        <div className="inline-flex items-center gap-1.5 bg-content1/40 backdrop-blur-xl py-0.5 px-3 rounded-2xl">
+                            <FaBolt />
+                            <span className="mb-0.5 font-medium">{skill.energy}</span>
+                        </div>
+                    )}
+                </div>
+            )}
         </div>
     );
 };

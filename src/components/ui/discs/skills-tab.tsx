@@ -1,10 +1,10 @@
 "use client";
 
-import { Slider } from "@heroui/slider";
 import { useState } from "react";
 import { FaCompactDisc } from "react-icons/fa";
 
 import DiscSkill from "@/components/ui/discs/disc-skill";
+import Slider from "@/components/ui/slider";
 import { TabPanel } from "@/components/ui/tabs";
 import { cn } from "@/lib/utils";
 import { Disc } from "@/typings/discs";
@@ -37,27 +37,14 @@ const SkillsTab = ({ disc }: SkillsTabProps) => {
                 <DiscSkill dupe={harmonyLevel} skill={disc.secondarySkill2} label="Secondary Skill" />
             )}
             {(disc.secondarySkill1 || disc.secondarySkill2) && (
-                <div className="flex items-center w-full gap-4">
-                    <Slider
-                        onChange={value => setHarmonyLevel(value as number)}
-                        renderThumb={props => (
-                            <div {...props} className="size-5 rounded-full bg-default-foreground top-1/2" />
-                        )}
-                        minValue={1}
-                        classNames={{
-                            track: "bg-content1/40 backdrop-blur-xl data-[fill-start=true]:border-s-transparent border-x-2",
-                            filler: "bg-transparent",
-                        }}
-                        maxValue={5}
-                        className="w-full"
-                        aria-label="Level"
-                        value={harmonyLevel}
-                        step={1}
-                    />
-                    <p className="bg-content1/40 backdrop-blur-xl whitespace-nowrap font-medium py-1 px-4 rounded-2xl">
-                        Lv.{harmonyLevel}
-                    </p>
-                </div>
+                <Slider
+                    onChange={value => setHarmonyLevel(value)}
+                    label={`Lv.${harmonyLevel}`}
+                    value={harmonyLevel}
+                    minValue={1}
+                    maxValue={5}
+                    step={1}
+                />
             )}
         </TabPanel>
     );

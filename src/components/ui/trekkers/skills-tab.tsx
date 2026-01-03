@@ -1,9 +1,9 @@
 "use client";
 
-import { Slider } from "@heroui/slider";
 import { useState } from "react";
 
 import Materials from "@/components/ui/materials";
+import Slider from "@/components/ui/slider";
 import { TabPanel } from "@/components/ui/tabs";
 import TrekkerSkill from "@/components/ui/trekkers/trekker-skill";
 import { Trekker } from "@/typings/trekker";
@@ -22,48 +22,22 @@ const SkillsTab = ({ trekker }: SkillsTabProps) => {
             <TrekkerSkill level={level} upgrade={upgradeLevel} skill={trekker.skill} label="Main Skill" />
             <TrekkerSkill level={level} upgrade={upgradeLevel} skill={trekker.supportSkill} label="Support Skill" />
             <TrekkerSkill level={level} upgrade={upgradeLevel} skill={trekker.ultimate} label="Ultimate Skill" />
-            <div className="flex items-center w-full gap-4">
-                <Slider
-                    onChange={value => setUpgradeLevel(value as number)}
-                    renderThumb={props => (
-                        <div {...props} className="size-5 rounded-full bg-default-foreground top-1/2" />
-                    )}
-                    minValue={0}
-                    classNames={{
-                        track: "bg-content1/40 backdrop-blur-xl data-[fill-start=true]:border-s-transparent border-x-2",
-                        filler: "bg-transparent",
-                    }}
-                    maxValue={8}
-                    className="w-full"
-                    aria-label="Level"
-                    value={upgradeLevel}
-                    step={1}
-                />
-                <p className="bg-content1/40 backdrop-blur-xl whitespace-nowrap font-medium py-1 px-4 rounded-2xl">
-                    Upgrade Lv.{upgradeLevel}
-                </p>
-            </div>
-            <div className="flex items-center w-full gap-4">
-                <Slider
-                    onChange={value => setLevel(value as number)}
-                    renderThumb={props => (
-                        <div {...props} className="size-5 rounded-full bg-default-foreground top-1/2" />
-                    )}
-                    minValue={1}
-                    classNames={{
-                        track: "bg-content1/40 backdrop-blur-xl data-[fill-start=true]:border-s-transparent border-x-2",
-                        filler: "bg-transparent",
-                    }}
-                    maxValue={13}
-                    className="w-full"
-                    aria-label="Level"
-                    value={level}
-                    step={1}
-                />
-                <p className="bg-content1/40 backdrop-blur-xl whitespace-nowrap font-medium py-1 px-4 rounded-2xl">
-                    Lv.{level}
-                </p>
-            </div>
+            <Slider
+                onChange={value => setUpgradeLevel(value)}
+                value={upgradeLevel}
+                maxValue={8}
+                minValue={0}
+                label={`Upgrade Lv.${upgradeLevel}`}
+                step={1}
+            />
+            <Slider
+                onChange={value => setLevel(value)}
+                value={level}
+                minValue={1}
+                maxValue={13}
+                label={`Lv.${level}`}
+                step={1}
+            />
             <Materials upgrades={trekker.skillUpgrade} upgradeLevel={level} startLevel={1} />
         </TabPanel>
     );

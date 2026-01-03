@@ -2,13 +2,13 @@
 
 import { Button } from "@heroui/button";
 import { Dropdown, DropdownItem, DropdownMenu, DropdownTrigger } from "@heroui/dropdown";
-import { Slider } from "@heroui/slider";
 import { useMemo, useState } from "react";
 import { FaCompactDisc } from "react-icons/fa";
 import { FaAnglesUp, FaEllipsis } from "react-icons/fa6";
 
 import Attributes from "@/components/ui/attributes";
 import Materials from "@/components/ui/materials";
+import Slider from "@/components/ui/slider";
 import { TabPanel } from "@/components/ui/tabs";
 import { cn } from "@/lib/utils";
 import { Disc } from "@/typings/discs";
@@ -42,48 +42,22 @@ const AttributesTab = ({ disc }: AttributesTabProps) => {
     return (
         <TabPanel className="space-y-2" value="attributes">
             <Attributes attr={attributes} buff={{ ATK: dupe > 1 ? disc.dupe[dupe - 2].ATK : 0 }} />
-            <div className="flex items-center w-full gap-4">
-                <Slider
-                    onChange={value => handleUpgradeLevelChange(value as number)}
-                    renderThumb={props => (
-                        <div {...props} className="size-5 rounded-full bg-default-foreground top-1/2" />
-                    )}
-                    classNames={{
-                        track: "bg-content1/40 backdrop-blur-xl data-[fill-start=true]:border-s-transparent border-x-2",
-                        filler: "bg-transparent",
-                    }}
-                    value={upgradeLevel}
-                    className="w-full"
-                    aria-label="Level"
-                    maxValue={8}
-                    minValue={0}
-                    step={1}
-                />
-                <p className="bg-content1/40 backdrop-blur-xl whitespace-nowrap font-medium py-1 px-4 rounded-2xl">
-                    Upgrade Lv.{upgradeLevel}
-                </p>
-            </div>
-            <div className="flex items-center w-full gap-4">
-                <Slider
-                    onChange={value => setLevel(value as number)}
-                    renderThumb={props => (
-                        <div {...props} className="size-5 rounded-full bg-default-foreground top-1/2" />
-                    )}
-                    minValue={Math.max(10 * upgradeLevel, 1)}
-                    classNames={{
-                        track: "bg-content1/40 backdrop-blur-xl data-[fill-start=true]:border-s-transparent border-x-2",
-                        filler: "bg-transparent",
-                    }}
-                    maxValue={10 * (upgradeLevel + 1)}
-                    className="w-full"
-                    aria-label="Level"
-                    value={level}
-                    step={1}
-                />
-                <p className="bg-content1/40 backdrop-blur-xl whitespace-nowrap font-medium py-1 px-4 rounded-2xl">
-                    Lv.{level}
-                </p>
-            </div>
+            <Slider
+                onChange={value => handleUpgradeLevelChange(value as number)}
+                value={upgradeLevel}
+                maxValue={8}
+                minValue={0}
+                label={`Upgrade Lv.${upgradeLevel}`}
+                step={1}
+            />
+            <Slider
+                onChange={value => setLevel(value)}
+                value={level}
+                minValue={Math.max(10 * upgradeLevel, 1)}
+                maxValue={10 * (upgradeLevel + 1)}
+                label={`Lv.${level}`}
+                step={1}
+            />
             <Materials upgrades={disc.upgrade} upgradeLevel={upgradeLevel} />
             <div className="flex items-center justify-between">
                 <div className="inline-flex items-center bg-content1/40 backdrop-blur-xl rounded-2xl py-2 px-3 gap-1">
