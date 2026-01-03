@@ -51,7 +51,7 @@ const Page: NextPage<Props> = ({ params }) => {
                                         <FaStar size={18} key={i} />
                                     ))}
                                 </div>
-                                <div className="inline-flex bg-[#36a] py-1 px-4 rounded-2xl items-center justify-center gap-1.5">
+                                <div className="inline-flex bg-[#36a] py-1 pl-3 pr-4 rounded-2xl items-center justify-center gap-1.5">
                                     <Image
                                         src={`/attack-types/${currentTrekker.attackType}.png`}
                                         alt={currentTrekker.attackType}

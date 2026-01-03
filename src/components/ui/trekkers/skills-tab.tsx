@@ -3,6 +3,7 @@
 import { Slider } from "@heroui/slider";
 import { useState } from "react";
 
+import Materials from "@/components/ui/materials";
 import { TabPanel } from "@/components/ui/tabs";
 import TrekkerSkill from "@/components/ui/trekkers/trekker-skill";
 import { Trekker } from "@/typings/trekker";
@@ -63,6 +64,7 @@ const SkillsTab = ({ trekker }: SkillsTabProps) => {
                     Lv.{level}
                 </p>
             </div>
+            <Materials upgrades={trekker.skillUpgrade} upgradeLevel={level} startLevel={1} />
         </TabPanel>
     );
 };

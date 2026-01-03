@@ -53,7 +53,7 @@ const Page: NextPage<Props> = ({ params }) => {
                                         <FaStar size={18} key={i} />
                                     ))}
                                 </div>
-                                <div className="inline-flex bg-content1/40 backdrop-blur-xl py-1 px-4 rounded-2xl items-center justify-center gap-1">
+                                <div className="inline-flex bg-content1/40 backdrop-blur-xl py-1 pl-3 pr-4 rounded-2xl items-center justify-center gap-1">
                                     <Image
                                         src={`/elements/${currentDisc.element}.png`}
                                         alt={currentDisc.element}

@@ -12,25 +12,29 @@ import { Item } from "@/typings/item";
 type MaterialsProps = {
     upgrades: Record<string, number>[];
     upgradeLevel: number;
+    startLevel?: number;
 };
 
-const Materials = ({ upgrades, upgradeLevel }: MaterialsProps) => {
+const Materials = ({ upgrades, upgradeLevel, startLevel = 0 }: MaterialsProps) => {
     const [accumulate, setAccumulate] = useState(false);
     const { itemSearch, item } = useDataStore();
 
     const caclulateMaterials = useMemo(() => {
-        if (upgradeLevel === 0) {
+        if (upgradeLevel === startLevel || upgradeLevel > upgrades.length + 1) {
             return { Dorra: 0, materials: [] };
         }
 
         if (!accumulate) {
-            const { Dorra: requiredDorra, ...rest } = upgrades[upgradeLevel - 1];
+            const { Dorra: requiredDorra, ...rest } = upgrades[upgradeLevel - startLevel - 1];
             return { Dorra: requiredDorra, materials: Object.entries(rest) };
         }
 
         const accumulatedMaterials: Record<string, number> = {};
 
-        for (let i = 0; i < upgradeLevel; i++) {
+        // Some upgrades might using emlem to upgrade, so we need to limit the range
+        const accumulatedRange = Math.min(upgradeLevel - startLevel, upgrades.length);
+
+        for (let i = 0; i < accumulatedRange; i++) {
             for (const [key, value] of Object.entries(upgrades[i])) {
                 accumulatedMaterials[key] = accumulatedMaterials[key] ? accumulatedMaterials[key] + value : value;
             }
@@ -57,7 +61,7 @@ const Materials = ({ upgrades, upgradeLevel }: MaterialsProps) => {
                     <span>x{caclulateMaterials.Dorra.toLocaleString()}</span>
                 </div>
             </div>
-            {upgradeLevel !== 0 ? (
+            {upgradeLevel !== startLevel && upgradeLevel <= upgrades.length + 1 ? (
                 <div className="flex items-center justify-center gap-4 py-4">
                     {caclulateMaterials.materials.map(([key, value]) => {
                         // I know this is weird, fix soon
