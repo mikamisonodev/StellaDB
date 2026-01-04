@@ -6,6 +6,7 @@ import { startTransition, use, useEffect, useState } from "react";
 import { FaStar } from "react-icons/fa6";
 
 import { Tab, TabPanel, Tabs } from "@/components/ui/tabs";
+import AttributesTab from "@/components/ui/trekkers/attributes-tab";
 import SkillsTab from "@/components/ui/trekkers/skills-tab";
 import { handleClassStyle } from "@/config/styles";
 import { cn } from "@/lib/utils";
@@ -90,7 +91,7 @@ const Page: NextPage<Props> = ({ params }) => {
                                     <Tab value="talent" title="Talent" />
                                     <Tab value="profile" title="Profile" />
                                 </div>
-                                <TabPanel value="attributes">a</TabPanel>
+                                <AttributesTab trekker={currentTrekker} />
                                 <SkillsTab trekker={currentTrekker} />
                                 <TabPanel value="potential">c</TabPanel>
                                 <TabPanel value="talent">d</TabPanel>

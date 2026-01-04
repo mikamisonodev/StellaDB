@@ -1,19 +1,65 @@
 "use client";
 
 import { IconType } from "react-icons";
-import { PiHeartFill, PiMusicNoteFill, PiSwordFill } from "react-icons/pi";
+import { FaBolt } from "react-icons/fa6";
+import { PiHeartFill, PiMusicNoteFill, PiShieldFill, PiSwordFill } from "react-icons/pi";
 
 import { cn } from "@/lib/utils";
 
 const icons: Record<string, IconType> = {
+    // Basic stats
     ATK: PiSwordFill,
     HP: PiHeartFill,
+    "Max HP": PiHeartFill,
+    DEF: PiShieldFill,
+    Crit: PiSwordFill,
+    "Crit DMG": PiSwordFill,
+    "Resilience Break DMG": PiShieldFill,
+    "VUL Exploit": PiSwordFill,
+    "Max Energy": FaBolt,
+    "Charge Efficiency (Main)": FaBolt,
+    "Charge Efficiency (Support)": FaBolt,
+    "DEF PEN": PiShieldFill,
+    "Ignore DEF": PiShieldFill,
+
+    // Element DMG
     "Ventus DMG": PiSwordFill,
+    "Ventus PEN": PiSwordFill,
+    "Ignore Ventus RES": PiSwordFill,
     "Aqua DMG": PiSwordFill,
+    "Aqua PEN": PiSwordFill,
+    "Ignore Aqua RES": PiSwordFill,
     "Ignis DMG": PiSwordFill,
+    "Ignis PEN": PiSwordFill,
+    "Ignore Ignis RES": PiSwordFill,
     "Terra DMG": PiSwordFill,
+    "Terra PEN": PiSwordFill,
+    "Ignore Terra RES": PiSwordFill,
     "Umbra DMG": PiSwordFill,
+    "Umbra PEN": PiSwordFill,
+    "Ignore Umbra RES": PiSwordFill,
     "Lux DMG": PiSwordFill,
+    "Lux PEN": PiSwordFill,
+    "Ignore Lux RES": PiSwordFill,
+
+    // General DMG types
+    "Skill DMG": PiSwordFill,
+    "Ultimate DMG": PiSwordFill,
+
+    // Support Melodies
+    "Melody of Pummel": PiMusicNoteFill,
+    "Melody of Skill": PiMusicNoteFill,
+    "Melody of Ultimate": PiMusicNoteFill,
+    "Melody of Stamina": PiMusicNoteFill,
+    "Melody of Focus": PiMusicNoteFill,
+    "Melody of Ignis": PiMusicNoteFill,
+    "Melody of Lux": PiMusicNoteFill,
+    "Melody of Ventus": PiMusicNoteFill,
+    "Melody of Aqua": PiMusicNoteFill,
+    "Melody of Umbra": PiMusicNoteFill,
+    "Melody of Terra": PiMusicNoteFill,
+    "Melody of Burst": PiMusicNoteFill,
+    "Melody of Luck": PiMusicNoteFill,
 };
 
 type AttributesProps = {
@@ -31,10 +77,10 @@ const Attributes = ({ attr, buff, doubleRows }: AttributesProps) => {
             )}
         >
             {Object.entries(attr).map(([key, value]) => {
-                const buffValue = buff ? (key in buff ? buff[key] : 0) : 0;
+                const buffValue = buff && key in buff ? buff[key] : 0;
 
                 // Use a default icon if the key is not found in the icons mapping
-                const Icon = icons[key as keyof typeof icons] ?? PiMusicNoteFill;
+                const Icon = icons[key as keyof typeof icons];
 
                 return (
                     <div key={key} className="flex items-center justify-between">

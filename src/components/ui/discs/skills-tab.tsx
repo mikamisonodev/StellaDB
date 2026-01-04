@@ -18,7 +18,7 @@ const SkillsTab = ({ disc }: SkillsTabProps) => {
     const [harmonyLevel, setHarmonyLevel] = useState(1);
 
     return (
-        <TabPanel className="space-y-4" value="skills">
+        <TabPanel className="space-y-3" value="skills">
             <DiscSkill dupe={dupe} skill={disc.mainSkill} label="Main Skill" />
             <div className="inline-flex items-center bg-content1/40 backdrop-blur-xl rounded-2xl py-2 px-3 gap-1">
                 {Array.from({ length: disc.dupe.length + 1 }, (_, i) => (

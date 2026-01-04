@@ -17,7 +17,7 @@ const SkillsTab = ({ trekker }: SkillsTabProps) => {
     const [upgradeLevel, setUpgradeLevel] = useState(0);
 
     return (
-        <TabPanel className="space-y-4" value="skills">
+        <TabPanel className="space-y-3" value="skills">
             <TrekkerSkill level={level} upgrade={upgradeLevel} skill={trekker.normalAtk} label="Normal Attack" />
             <TrekkerSkill level={level} upgrade={upgradeLevel} skill={trekker.skill} label="Main Skill" />
             <TrekkerSkill level={level} upgrade={upgradeLevel} skill={trekker.supportSkill} label="Support Skill" />

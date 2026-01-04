@@ -19,7 +19,7 @@ const Slider = ({ value, onChange, minValue, maxValue, step, label }: SliderProp
                 renderThumb={props => <div {...props} className="size-5 rounded-full bg-default-foreground top-1/2" />}
                 minValue={minValue}
                 classNames={{
-                    track: "bg-content1/40 backdrop-blur-xl data-[fill-start=true]:border-s-transparent border-x-2",
+                    track: "bg-content1/40 backdrop-blur-xl data-[fill-start=true]:border-s-transparent border-x-6",
                     filler: "bg-transparent",
                 }}
                 maxValue={maxValue}

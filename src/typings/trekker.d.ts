@@ -141,6 +141,6 @@ export interface Stat {
     def: number;
     critRate: string;
     critDmg: string;
-    resilienceBreakDmg: string;
+    resilienceBreakEfficiency: string;
     vul: string;
 }
