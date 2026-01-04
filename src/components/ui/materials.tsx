@@ -20,18 +20,22 @@ const Materials = ({ upgrades, upgradeLevel, startLevel = 0 }: MaterialsProps) =
     const { itemSearch, item } = useDataStore();
 
     const caclulateMaterials = useMemo(() => {
-        if (upgradeLevel === startLevel || upgradeLevel > upgrades.length + 1) {
+        if (upgradeLevel === startLevel) {
             return { Dorra: 0, materials: [] };
         }
 
         if (!accumulate) {
+            if (upgradeLevel - 1 > upgrades.length) {
+                return { Dorra: 0, materials: [] };
+            }
+
             const { Dorra: requiredDorra, ...rest } = upgrades[upgradeLevel - startLevel - 1];
             return { Dorra: requiredDorra, materials: Object.entries(rest) };
         }
 
         const accumulatedMaterials: Record<string, number> = {};
 
-        // Some upgrades might using emlem to upgrade, so we need to limit the range
+        // Some upgrades might using emblem to upgrade, so we need to limit the range
         const accumulatedRange = Math.min(upgradeLevel - startLevel, upgrades.length);
 
         for (let i = 0; i < accumulatedRange; i++) {
@@ -61,7 +65,7 @@ const Materials = ({ upgrades, upgradeLevel, startLevel = 0 }: MaterialsProps) =
                     <span>x{caclulateMaterials.Dorra.toLocaleString()}</span>
                 </div>
             </div>
-            {upgradeLevel !== startLevel && upgradeLevel <= upgrades.length + 1 ? (
+            {caclulateMaterials.materials.length !== 0 ? (
                 <div className="flex items-center justify-center gap-4 py-4">
                     {caclulateMaterials.materials.map(([key, value]) => {
                         // I know this is weird, fix soon
